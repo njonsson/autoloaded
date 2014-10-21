@@ -1,4 +1,4 @@
-require "autoloaded/version"
+require 'autoloaded/version'
 
 module Autoloaded
   # Your code goes here...
