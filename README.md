@@ -30,7 +30,49 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Suppose you have the following source files:
+
+* lib/
+  * my_awesome_gem/
+    * db/
+      * mysql.rb
+      * postgresql.rb
+      * sql_server.rb
+    * db.rb
+  * my_awesome_gem.rb
+
+The following statements establish autoloading — one statement per namespace:
+
+```ruby
+# lib/my_awesome_gem.rb
+module MyAwesomeGem
+
+  include Autoloaded
+
+end
+
+# lib/my_awesome_gem/db.rb
+module MyAwesomeGem
+
+  module DB
+
+    include Autoloaded
+
+  end
+
+end
+```
+
+Note that your preferred casing of constants is accommodated automatically:
+
+```ruby
+MyAwesomeGem::DB::MySQL.new
+MyAwesomeGem::DB::PostgreSQL.new
+MyAwesomeGem::DB::SQLServer.new
+```
+
+_Autoloaded_ does not perform deep autoloading of nested namespaces and
+directories. This is by design.
 
 ## Contributing
 
