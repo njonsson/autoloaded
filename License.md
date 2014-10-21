@@ -1,6 +1,8 @@
-Copyright © 2014 Nils Jonsson
-
 # The MIT License
+
+Source code for _Autoloaded_ is Copyright © 2014
+[Nils Jonsson](mailto:autoloaded@nilsjonsson.com) and
+[contributors](https://github.com/njonsson/autoloaded/contributors "Autoloaded contributors at GitHub").
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the “Software”), to deal in the
