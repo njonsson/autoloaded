@@ -7,7 +7,7 @@ TODO: Write a gem description
 Add this line to your application’s Gemfile:
 
 ```ruby
-gem 'autoloaded'
+gem 'autoloaded', '~> 0'
 ```
 
 And then execute:
