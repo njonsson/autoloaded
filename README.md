@@ -1,6 +1,16 @@
 # Autoloaded
 
-TODO: Write a gem description
+_Autoloaded_ dynamically and flexibly loads source files in a directory when a
+corresponding constant is dereferenced. It offers several advantages over other
+autoloading facilities such as those provided by the
+[Ruby Core library](http://ruby-doc.org/core/Module.html#method-i-autoload) and
+the
+[ActiveSupport](http://api.rubyonrails.org/classes/ActiveSupport/Autoload.html)
+gem:
+
+* It does not require a separate `autoload` statement for each constant
+* It does not enforce `CamelCase` to `snake_case` correspondence between the
+  names of constants and source files
 
 ## Installation
 
