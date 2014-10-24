@@ -1,0 +1,11 @@
+language: ruby
+bundler_args: --without debug doc tooling
+rvm:
+  - 2.1.0
+  - ruby-head
+  - jruby-head
+script: "bundle exec rake test"
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-head
