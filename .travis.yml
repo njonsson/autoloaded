@@ -5,6 +5,7 @@ rvm:
   - ruby-head
   - jruby-head
 script: "bundle exec rake test"
+env: CI=true
 matrix:
   allow_failures:
     - rvm: ruby-head

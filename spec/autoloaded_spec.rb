@@ -2,6 +2,8 @@ require 'autoloaded'
 require 'matchers'
 
 RSpec.describe Autoloaded do
+  pending "examples can't be run under CI due to process forking" if ENV['CI']
+
   describe 'not extending a namespace' do
     let(:source_file) { 'spec/fixtures/namespace_that_is_not_autoloaded.rb' }
 
