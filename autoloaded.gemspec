@@ -10,20 +10,20 @@ Gem::Specification.new do |spec|
   spec.version       = Autoloaded::VERSION
   spec.authors       = ['Nils Jonsson']
   spec.email         = ['autoloaded@nilsjonsson.com']
-  spec.summary       = <<-end_summary.gsub(/^\s+/, '').gsub("\n", '')
+  spec.summary       = <<-end_summary.gsub(/^\s+/, '').gsub("\n", ' ')
                          Dynamically and flexibly loads source files in a
                          directory when a corresponding constant is dereferenced.
                        end_summary
-  spec.description   = <<-end_description.gsub(/^\s+/, '').gsub(/\S\n/, '')
+  spec.description   = spec.summary +
+                       ' '          +
+                       <<-end_description.gsub(/^\s+/, '').gsub(/\n(?=\S)/, ' ').chomp
                          Offers several advantages over other autoloading
                          facilities such as those provided by the Ruby Core
-                         library and the ActiveSupport gem:
-
-                         - It does not require a separate `autoload` statement
-                           for each constant
-                         - It does not enforce CamelCase to snake_case
-                           correspondence between the names of constants and
-                           source files
+                         library and the ActiveSupport gem: (a) it does not
+                         require a separate `autoload` statement for each
+                         constant, and (b) it does not enforce CamelCase to
+                         snake_case correspondence between the names of constants
+                         and source files.
                        end_description
   spec.homepage      = 'https://github.com/njonsson/autoloaded'
   spec.license       = 'MIT'
