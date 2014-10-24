@@ -2,7 +2,7 @@ require 'autoloaded'
 require 'matchers'
 
 RSpec.describe Autoloaded do
-  describe 'not included in a namespace' do
+  describe 'not extending a namespace' do
     let(:source_file) { 'spec/fixtures/namespace_that_is_not_autoloaded.rb' }
 
     specify('does not dynamically define a nested constant') {
@@ -10,7 +10,7 @@ RSpec.describe Autoloaded do
     }
   end
 
-  describe 'included in a namespace' do
+  describe 'extending a namespace' do
     describe 'whose source files have conventional names' do
       let(:source_file) {
         'spec/fixtures/namespace_that_is_autoloaded_conventionally.rb'
