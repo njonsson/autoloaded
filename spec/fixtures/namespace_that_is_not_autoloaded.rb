@@ -1,0 +1,1 @@
+module NamespaceThatIsNotAutoloaded; end

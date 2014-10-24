@@ -47,7 +47,7 @@ The following statements establish autoloading — one statement per namespace:
 # lib/my_awesome_gem.rb
 module MyAwesomeGem
 
-  include Autoloaded
+  extend Autoloaded
 
 end
 
@@ -56,7 +56,7 @@ module MyAwesomeGem
 
   module DB
 
-    include Autoloaded
+    extend Autoloaded
 
   end
 
@@ -73,6 +73,36 @@ MyAwesomeGem::DB::SQLServer.new
 
 _Autoloaded_ does not perform deep autoloading of nested namespaces and
 directories. This is by design.
+
+### Important note
+
+You must extend a namespace with _Autoloaded_ **from within the file in which the
+namespace is defined**. This is because _Autoloaded_ utilizes the source file
+path of the namespace to establish which directory will be autoloaded. That path
+is discoverable only via the stack trace of `extend Autoloaded`.
+
+In the following example, autoloading of the _MyAwesomeGem_ namespace will not
+occur because the name of the source file in which the `extend` statement is
+invoked does not match the name of the namespace.
+
+```ruby
+# lib/my_awesome_gem.rb
+module MyAwesomeGem; end
+
+# lib/my_awesome_gem/db.rb
+module MyAwesomeGem
+
+  # WRONG! Autoloading will not occur.
+  extend Autoloaded
+
+  module DB
+
+    extend Autoloaded
+
+  end
+
+end
+```
 
 ## Contributing
 
