@@ -1,12 +1,14 @@
 # Autoloaded
 
+[![Travis CI build status]      ][Travis-CI-build-status]
+[![Code Climate quality report] ][Code-Climate-report]
+[![Code Climate coverage report]][Code-Climate-report]
+
 _Autoloaded_ dynamically and flexibly loads source files in a directory when a
 corresponding constant is dereferenced. It offers several advantages over other
 autoloading facilities such as those provided by the
-[Ruby Core library](http://ruby-doc.org/core/Module.html#method-i-autoload) and
-the
-[ActiveSupport](http://api.rubyonrails.org/classes/ActiveSupport/Autoload.html)
-gem:
+[Ruby Core library][Ruby-Core-Module-autoload] and the
+[ActiveSupport][ActiveSupport-Autoload] gem:
 
 * It does not require a separate `autoload` statement for each constant
 * It does not enforce `CamelCase` to `snake_case` correspondence between the
@@ -106,8 +108,24 @@ end
 
 ## Contributing
 
-1. [Fork the official repository](https://github.com/njonsson/autoloaded/fork).
+1. [Fork][fork-Autoloaded] the official repository.
 2. Create your feature branch: `git checkout -b my-new-feature`.
 3. Commit your changes: `git commit -am 'Add some feature'`.
 4. Push to the branch: `git push origin my-new-feature`.
-5. Create a [new pull request](https://github.com/njonsson/autoloaded/compare).
+5. [Create][compare-Autoloaded-branches] a new pull request.
+
+## License
+
+Released under the [MIT License][MIT-License].
+
+[Travis CI build status]:       https://secure.travis-ci.org/njonsson/autoloaded.png?branch=master
+[Code Climate quality report]:  https://codeclimate.com/github/njonsson/autoloaded/badges/gpa.svg
+[Code Climate coverage report]: https://codeclimate.com/github/njonsson/autoloaded/badges/coverage.svg
+
+[Travis-CI-build-status]:      http://travis-ci.org/njonsson/autoloaded                       "Travis CI build status"
+[Code-Climate-report]:         http://codeclimate.com/github/njonsson/autoloaded              "Code Climate report"
+[Ruby-Core-Module-autoload]:   http://ruby-doc.org/core/Module.html#method-i-autoload         "‘Module#autoload’ method in the Ruby Core Library"
+[ActiveSupport-Autoload]:      http://api.rubyonrails.org/classes/ActiveSupport/Autoload.html "‘ActiveSupport::Autoload’ module in the Rails API"
+[fork-Autoloaded]:             https://github.com/njonsson/autoloaded/fork                    "Fork the official Autoloaded repository"
+[compare-Autoloaded-branches]: https://github.com/njonsson/autoloaded/compare                 "Compare branches of Autoloaded repositories"
+[MIT-License]:                 http://github.com/njonsson/autoloaded/blob/master/License.md
