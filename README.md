@@ -3,6 +3,9 @@
 [![Travis CI build status]      ][Travis-CI-build-status]
 [![Code Climate quality report] ][Code-Climate-report]
 [![Code Climate coverage report]][Code-Climate-report]
+[![Gemnasium build status]      ][Gemnasium-build-status]
+[![Inch CI build status]        ][Inch-CI-build-status]
+[![RubyGems release]            ][RubyGems-release]
 
 _Autoloaded_ dynamically and flexibly loads source files in a directory when a
 corresponding constant is dereferenced. It offers several advantages over other
@@ -121,11 +124,17 @@ Released under the [MIT License][MIT-License].
 [Travis CI build status]:       https://secure.travis-ci.org/njonsson/autoloaded.png?branch=master
 [Code Climate quality report]:  https://codeclimate.com/github/njonsson/autoloaded/badges/gpa.svg
 [Code Climate coverage report]: https://codeclimate.com/github/njonsson/autoloaded/badges/coverage.svg
+[Gemnasium build status]:       https://gemnasium.com/njonsson/autoloaded.png
+[Inch CI build status]:         http://inch-ci.org/github/njonsson/autoloaded.svg?branch=master
+[RubyGems release]:             https://badge.fury.io/rb/autoloaded.png
 
-[Travis-CI-build-status]:      http://travis-ci.org/njonsson/autoloaded                       "Travis CI build status"
-[Code-Climate-report]:         http://codeclimate.com/github/njonsson/autoloaded              "Code Climate report"
+[Travis-CI-build-status]:      http://travis-ci.org/njonsson/autoloaded                       "Travis CI build status for Autoloaded"
+[Code-Climate-report]:         http://codeclimate.com/github/njonsson/autoloaded              "Code Climate report for Autoloaded"
+[Gemnasium-build-status]:      http://gemnasium.com/njonsson/autoloaded                       "Gemnasium build status for Autoloaded"
+[Inch-CI-build-status]:        http://inch-ci.org/github/njonsson/autoloaded                  "Inch CI build status for Autoloaded"
+[RubyGems-release]:            http://rubygems.org/gems/autoloaded                            "RubyGems release of Autoloaded"
 [Ruby-Core-Module-autoload]:   http://ruby-doc.org/core/Module.html#method-i-autoload         "‘Module#autoload’ method in the Ruby Core Library"
 [ActiveSupport-Autoload]:      http://api.rubyonrails.org/classes/ActiveSupport/Autoload.html "‘ActiveSupport::Autoload’ module in the Rails API"
-[fork-Autoloaded]:             https://github.com/njonsson/autoloaded/fork                    "Fork the official Autoloaded repository"
+[fork-Autoloaded]:             https://github.com/njonsson/autoloaded/fork                    "Fork the official repository of Autoloaded"
 [compare-Autoloaded-branches]: https://github.com/njonsson/autoloaded/compare                 "Compare branches of Autoloaded repositories"
-[MIT-License]:                 http://github.com/njonsson/autoloaded/blob/master/License.md
+[MIT-License]:                 http://github.com/njonsson/autoloaded/blob/master/License.md   "MIT License claim for Autoloaded"
