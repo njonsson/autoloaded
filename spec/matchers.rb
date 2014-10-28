@@ -62,7 +62,6 @@ RSpec::Matchers.define :define_only_constants_named do |*constant_names|
     if $?.success?
       defined_constants = []
       reader.each_line do |line|
-        binding.pry
         defined_constants << eval(line.chomp)
       end
       defined_constants = defined_constants.sort.collect(&:to_sym)
