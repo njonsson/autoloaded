@@ -11,7 +11,7 @@ RSpec::Matchers.define :autoload_a_constant_named do |constant_name|
         eval constant_name
       rescue
       else
-        raise("Constant #{constant_name} is already defined")
+        raise("constant #{constant_name} is already defined")
       end
 
       load source_file
@@ -38,7 +38,7 @@ RSpec::Matchers.define :define_only_constants_named do |*constant_names|
     File.read source_file
 
     unless namespace_name
-      raise "Missing .in_a_namespace_named(:Namespace) clause"
+      raise "missing .in_a_namespace_named(:Namespace) clause"
     end
 
     reader, writer = IO.pipe
