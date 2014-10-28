@@ -1,5 +1,3 @@
-require 'open3'
-
 RSpec::Matchers.define :autoload_a_constant_named do |constant_name|
   match do |source_file|
     # Ensure the file exists.
