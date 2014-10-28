@@ -1,7 +1,8 @@
 RSpec::Matchers.define :autoload_a_constant_named do |constant_name|
   match do |source_file|
     # Ensure the file exists.
-    File.read source_file
+    File.open source_file, 'r' do
+    end
 
     constant_tokens = constant_name.split('::')
     constant_up_till_last = constant_tokens[0...-1].join('::')
@@ -35,7 +36,8 @@ RSpec::Matchers.define :define_only_constants_named do |*constant_names|
 
   match do |source_file|
     # Ensure the file exists.
-    File.read source_file
+    File.open source_file, 'r' do
+    end
 
     unless namespace_name
       raise "missing .in_a_namespace_named(:Namespace) clause"
