@@ -1,3 +1,5 @@
+[![Autoloaded graphic]][spider-gear-image]
+
 # Autoloaded
 
 [![Travis CI build status]      ][Travis-CI-build-status]
@@ -121,6 +123,7 @@ end
 
 Released under the [MIT License][MIT-License].
 
+[Autoloaded graphic]:           https://farm5.staticflickr.com/4134/4941065976_54737fe145.jpg
 [Travis CI build status]:       https://secure.travis-ci.org/njonsson/autoloaded.svg?branch=master
 [Code Climate quality report]:  https://codeclimate.com/github/njonsson/autoloaded/badges/gpa.svg
 [Code Climate coverage report]: https://codeclimate.com/github/njonsson/autoloaded/badges/coverage.svg
@@ -128,6 +131,7 @@ Released under the [MIT License][MIT-License].
 [Inch CI build status]:         http://inch-ci.org/github/njonsson/autoloaded.svg?branch=master
 [RubyGems release]:             https://badge.fury.io/rb/autoloaded.svg
 
+[spider-gear-image]:           https://www.flickr.com/photos/dongkwan/4941065976              "spider gear image by Ernesto Andrade"
 [Travis-CI-build-status]:      http://travis-ci.org/njonsson/autoloaded                       "Travis CI build status for Autoloaded"
 [Code-Climate-report]:         http://codeclimate.com/github/njonsson/autoloaded              "Code Climate report for Autoloaded"
 [Gemnasium-build-status]:      http://gemnasium.com/njonsson/autoloaded                       "Gemnasium build status for Autoloaded"
