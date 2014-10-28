@@ -8,6 +8,11 @@ RSpec.describe Autoloaded do
     specify('does not dynamically define a nested constant') {
       expect(source_file).not_to autoload_a_constant_named('NamespaceThatIsNotAutoloaded::Nested')
     }
+
+    specify('does not pollute the namespace') {
+      expect(source_file).to define_only_constants_named().
+                             in_a_namespace_named(:NamespaceThatIsNotAutoloaded)
+    }
   end
 
   describe 'extending a namespace' do

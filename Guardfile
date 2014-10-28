@@ -22,7 +22,10 @@ guard :rspec, all_after_pass: true,
   # Run all specs when a matcher changes.
   watch( 'spec/matchers.rb' ) { 'spec' }
 
-  # Run all when a fixture changes.
+  # Run all specs when a support file changes.
+  watch( %r{^spec/support} ) { 'spec' }
+
+  # Run all specs when a fixture changes.
   watch( %r{^spec/fixtures} ) { 'spec' }
 
   # Run all specs when the RSpec configuration changes.

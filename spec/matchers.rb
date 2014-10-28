@@ -1,3 +1,5 @@
+require 'support/without_side_effects'
+
 RSpec::Matchers.define :autoload_a_constant_named do |constant_name|
   match do |source_file|
     # Ensure the file exists.
@@ -7,27 +9,25 @@ RSpec::Matchers.define :autoload_a_constant_named do |constant_name|
     constant_tokens = constant_name.split('::')
     constant_up_till_last = constant_tokens[0...-1].join('::')
     constant_last = constant_tokens.last
-    pid = fork do
+
+    without_side_effects do
       begin
-        eval constant_name
-      rescue
+        eval constant_name.to_s
+      rescue NameError
       else
-        raise("constant #{constant_name} is already defined")
+        raise("#{constant_name} is already defined")
       end
 
       load source_file
 
       begin
-        eval constant_name
-      rescue
-        exit 1
-      end
-      unless eval(constant_up_till_last).autoload?(constant_last.to_sym)
-        exit 1
+        eval constant_name.to_s
+      rescue NameError
+        false
+      else
+        eval(constant_up_till_last).autoload? constant_last.to_sym
       end
     end
-    Process.wait pid
-    $?.success?
   end
 end
 
@@ -35,6 +35,8 @@ RSpec::Matchers.define :define_only_constants_named do |*constant_names|
   attr_reader :expected_constants, :extraneous_defined_constants, :namespace_name
 
   match do |source_file|
+    @expected_constants, @extraneous_defined_constants = [], []
+
     # Ensure the file exists.
     File.open source_file, 'r' do
     end
@@ -43,36 +45,21 @@ RSpec::Matchers.define :define_only_constants_named do |*constant_names|
       raise "missing .in_a_namespace_named(:Namespace) clause"
     end
 
-    reader, writer = IO.pipe
-    pid = fork do
-      reader.close
-
+    defined_constants = without_side_effects do
       load source_file
 
-      begin
-        constant_names.each do |constant_name|
-          eval(namespace_name).const_get constant_name
-        end
-        eval(namespace_name).constants.each do |constant_name|
-          writer.puts constant_name.inspect
-        end
-      rescue
+      namespace = eval(namespace_name.to_s)
+
+      # Trigger autoloading.
+      constant_names.each do |constant_name|
+        namespace.const_get constant_name
       end
+
+      namespace.constants.sort.collect(&:to_sym)
     end
-    Process.wait pid
-    writer.close
-    if $?.success?
-      defined_constants = []
-      reader.each_line do |line|
-        defined_constants << eval(line.chomp)
-      end
-      defined_constants = defined_constants.sort.collect(&:to_sym)
-      @expected_constants = constant_names.sort.collect(&:to_sym)
-      @extraneous_defined_constants = defined_constants - expected_constants
-      extraneous_defined_constants.empty?
-    else
-      false
-    end
+    @expected_constants = constant_names.sort.collect(&:to_sym)
+    @extraneous_defined_constants = defined_constants - expected_constants
+    extraneous_defined_constants.empty?
   end
 
   chain :in_a_namespace_named do |namespace_name|
