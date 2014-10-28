@@ -44,7 +44,10 @@ private
     string.to_s.gsub(/[^a-z0-9]/i, '').downcase
   end
 
-  def yield_all_qualified_filenames_in(directory, unless_in:, &block)
+  def yield_all_qualified_filenames_in(directory, unless_in: nil, &block)
+    unless unless_in
+      raise ::ArgumentError, "missing keyword: unless_in"
+    end
     ::Dir.glob(qualified_glob_in(directory), ::File::FNM_CASEFOLD) do |filename|
       filename_signature = signature(::File.basename(filename, extension))
       if (filename_signature == name_signature) &&
@@ -54,7 +57,10 @@ private
     end
   end
 
-  def yield_qualified_name_source_filename_in(directory, unless_in:, &block)
+  def yield_qualified_name_source_filename_in(directory, unless_in: nil, &block)
+    unless unless_in
+      raise ::ArgumentError, "missing keyword: unless_in"
+    end
     qualified = ::File.join(directory, name_source_filename)
     if ::File.file?(qualified) && unless_in.add?(name_source_filename)
       block.call qualified
