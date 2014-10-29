@@ -5,6 +5,7 @@ using ::Autoloaded::Refine::String::ToSourceFilename
 
 module Autoloaded; end
 
+# @private
 class Autoloaded::Constant
 
   attr_reader :name

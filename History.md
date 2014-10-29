@@ -1,4 +1,4 @@
-﻿# Version history for the _Autoloaded_ project
+# Version history for the _Autoloaded_ project
 
 ## <a name="v1.0.0"></a>v1.0.0, Wed 10/29/2013
 

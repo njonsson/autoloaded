@@ -1,4 +1,4 @@
-﻿# The MIT License
+# The MIT License
 
 Source code for _Autoloaded_ is Copyright © 2014 [Nils Jonsson][mail] and
 [contributors][contributors].

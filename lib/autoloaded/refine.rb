@@ -1,5 +1,6 @@
 module Autoloaded
 
+  # @private
   module Refine; end
 
 end
