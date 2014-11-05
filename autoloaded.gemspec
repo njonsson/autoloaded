@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
                          snake_case correspondence between the names of constants
                          and source files.
                        end_description
-  spec.homepage      = 'https://github.com/njonsson/autoloaded'
+  spec.homepage      = 'http://njonsson.github.io/autoloaded'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
