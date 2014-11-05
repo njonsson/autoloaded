@@ -84,7 +84,7 @@ RSpec::Matchers.define :set_up_autoload_for_constant do |constant_name|
       namespace, unqualified_constant_name = Util.namespace_and_unqualified_constant_name(constant_name,
                                                                                           raise_if_namespace_invalid: true)
       if filename_or_filenames
-        filename_or_filenames == namespace.autoload?(unqualified_constant_name)
+        Array(filename_or_filenames).sort == Array(namespace.autoload?(unqualified_constant_name)).sort
       else
         namespace.autoload? unqualified_constant_name
       end
