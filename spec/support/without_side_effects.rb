@@ -18,6 +18,12 @@ def without_side_effects
       err_writer.write Marshal.dump(e)
       raise e
     end
+
+    # The codeclimate-test-reporter RubyGem uses Kernel#at_exit to hook the end
+    # of test/spec runs for sending coverage statistics to their web service. We
+    # need to skip that hook in this process fork because this is not the end of
+    # a test/spec run, only of a process fork.
+    exit!(true) if ENV['CODECLIMATE_REPO_TOKEN']
   end
 
   Process.wait pid
