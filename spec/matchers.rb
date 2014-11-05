@@ -1,72 +1,114 @@
+require 'support/util'
 require 'support/without_side_effects'
 
-RSpec::Matchers.define :autoload_a_constant_named do |constant_name|
+RSpec::Matchers.define :define_constants do |*constant_names|
   match do |source_file|
     # Ensure the file exists.
     File.open source_file, 'r' do
     end
 
-    constant_tokens = constant_name.split('::')
-    constant_up_till_last = constant_tokens[0...-1].join('::')
-    constant_last = constant_tokens.last
-
     without_side_effects do
-      begin
-        eval constant_name.to_s
-      rescue NameError
-      else
-        raise("#{constant_name} is already defined")
+      constant_names.each do |constant_name|
+        if Util.constantize(constant_name)
+          fail "constant #{constant_name} is already defined outside #{source_file}"
+        end
       end
 
       load source_file
 
-      begin
-        eval constant_name.to_s
-      rescue NameError
+      any_statically_defined = false
+      if dynamically?
+        any_statically_defined = constant_names.any? do |constant_name|
+          current_scope = Object
+          constant_name.split(Util.namespace_delimiter).all? do |token|
+            current_scope.constants.include?(token.to_sym).tap do |result|
+              if result
+                current_scope = Util.constantize([current_scope.name, token].join(Util.namespace_delimiter))
+              end
+            end
+          end
+        end
+      end
+
+      if any_statically_defined
         false
       else
-        eval(constant_up_till_last).autoload? constant_last.to_sym
+        constant_names.all? do |constant_name|
+          namespace, unqualified_constant_name = Util.namespace_and_unqualified_constant_name(constant_name,
+                                                                                              raise_if_namespace_invalid: true)
+          (!dynamically? ||
+           !namespace.constants.include?(unqualified_constant_name.to_sym)) &&
+            Util.constantize(constant_name)
+        end
       end
     end
+  end
+
+  chain :dynamically do
+    @dynamically = true
+  end
+
+  description do
+    fragments = []
+    fragments << case constant_names.length
+                   when 0
+                     'no constants'
+                   when 1
+                     "constant #{constant_names.first}"
+                   else
+                     "constants #{constant_names.join ' and '}"
+                 end
+    fragments << 'dynamically' if dynamically?
+    "define #{fragments.join ' '}"
+  end
+
+  def dynamically?
+    @dynamically
   end
 end
 
-RSpec::Matchers.define :define_only_constants_named do |*constant_names|
-  attr_reader :expected_constants, :extraneous_defined_constants, :namespace_name
-
+RSpec::Matchers.define :set_up_autoload_for_constant do |constant_name|
   match do |source_file|
-    @expected_constants, @extraneous_defined_constants = [], []
-
     # Ensure the file exists.
     File.open source_file, 'r' do
     end
 
-    unless namespace_name
-      raise "missing .in_a_namespace_named(:Namespace) clause"
-    end
-
-    defined_constants = without_side_effects do
-      load source_file
-
-      namespace = eval(namespace_name.to_s)
-
-      # Trigger autoloading.
-      constant_names.each do |constant_name|
-        namespace.const_get constant_name
+    without_side_effects do
+      namespace, unqualified_constant_name = Util.namespace_and_unqualified_constant_name(constant_name)
+      if namespace && namespace.autoload?(unqualified_constant_name)
+        fail "#{namespace.name}::#{unqualified_constant_name} is already set up for autoload outside #{source_file}"
       end
 
-      namespace.constants.sort.collect(&:to_sym)
+      load source_file
+
+      namespace, unqualified_constant_name = Util.namespace_and_unqualified_constant_name(constant_name,
+                                                                                          raise_if_namespace_invalid: true)
+      if filename_or_filenames
+        filename_or_filenames == namespace.autoload?(unqualified_constant_name)
+      else
+        namespace.autoload? unqualified_constant_name
+      end
     end
-    @expected_constants = constant_names.sort.collect(&:to_sym)
-    @extraneous_defined_constants = defined_constants - expected_constants
-    extraneous_defined_constants.empty?
   end
 
-  chain :in_a_namespace_named do |namespace_name|
-    @namespace_name = namespace_name
+  chain :from_file do |filename|
+    @filename_or_filenames = filename
   end
 
-  failure_message do |source_file|
-    "expected only #{expected_constants.join ' and '} to be defined in #{namespace_name} but also found #{extraneous_defined_constants.join ' and '}"
+  chain :from_files do |*filenames|
+    @filename_or_filenames = filenames
   end
+
+  description do
+    fragments = []
+    fragments << "constant #{constant_name}"
+    if filename_or_filenames
+      unless (filenames = Array(filename_or_filenames)).empty?
+        fragments << "from file#{(filenames.length == 1) ? nil : 's'} #{filenames.join ' and '}"
+      end
+    end
+    "set up #{Module.name}#autoload? for #{fragments.join ' '}"
+  end
+
+  attr_reader :filename_or_filenames
 end

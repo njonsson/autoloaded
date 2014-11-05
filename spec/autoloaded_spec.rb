@@ -2,47 +2,131 @@ require 'autoloaded'
 require 'matchers'
 
 RSpec.describe Autoloaded do
-  describe 'not extending a namespace' do
-    let(:source_file) { 'spec/fixtures/namespace_that_is_not_autoloaded.rb' }
+  before :each do
+    class << self
+      alias_method :define_constant, :define_constants
+    end
+  end
 
-    specify('does not dynamically define a nested constant') {
-      expect(source_file).not_to autoload_a_constant_named('NamespaceThatIsNotAutoloaded::Nested')
+  describe 'not extending a namespace' do
+    subject(:source_file) { 'spec/fixtures/not_autoloaded.rb' }
+
+    it { is_expected.to define_constant(:NotAutoloaded) }
+
+    it { is_expected.to define_constant('NotAutoloaded::OldSchoolAutoload') }
+
+    it { is_expected.not_to define_constant('NotAutoloaded::Nested') }
+
+    it {
+      is_expected.to set_up_autoload_for_constant('NotAutoloaded::OldSchoolAutoload').
+                     from_file('fixtures/not_autoloaded/old_school_autoload')
     }
 
-    specify('does not pollute the namespace') {
-      expect(source_file).to define_only_constants_named().
-                             in_a_namespace_named(:NamespaceThatIsNotAutoloaded)
+    it {
+      is_expected.not_to set_up_autoload_for_constant('NotAutoloaded::Nested')
     }
   end
 
-  describe 'extending a namespace' do
-    describe 'whose source files have conventional names' do
-      let(:source_file) {
-        'spec/fixtures/namespace_that_is_autoloaded_conventionally.rb'
+  describe 'extending a namespace whose constituent source files have' do
+    describe 'conventional names used for autoloading' do
+      subject(:source_file) {
+        'spec/fixtures/autoloaded_with_conventional_filename.rb'
       }
 
-      specify('dynamically defines a nested constant stored in a conventionally-named file') {
-        expect(source_file).to autoload_a_constant_named('NamespaceThatIsAutoloadedConventionally::Nested')
+      it { is_expected.to define_constant(:AutoloadedWithConventionalFilename) }
+
+      it {
+        is_expected.to define_constant('AutoloadedWithConventionalFilename::OldSchoolAutoload')
       }
 
-      specify('does not pollute the namespace') {
-        expect(source_file).to define_only_constants_named(:Nested).
-                               in_a_namespace_named(:NamespaceThatIsAutoloadedConventionally)
+      it {
+        is_expected.to define_constant('AutoloadedWithConventionalFilename::Nested').
+                       dynamically
+      }
+
+      it {
+        is_expected.not_to define_constant('AutoloadedWithConventionalFilename::NONEXISTENT')
+      }
+
+      it {
+        is_expected.to set_up_autoload_for_constant('AutoloadedWithConventionalFilename::OldSchoolAutoload').
+                       from_file('fixtures/autoloaded_with_conventional_filename/old_school_autoload')
+      }
+
+      it {
+        is_expected.to set_up_autoload_for_constant('AutoloadedWithConventionalFilename::Nested').
+                       from_files('fixtures/autoloaded_with_conventional_filename/nested',
+                                  'fixtures/autoloaded_with_conventional_filename/N-est-ed',
+                                  'fixtures/autoloaded_with_conventional_filename/nest_ed')
+      }
+
+      it {
+        is_expected.not_to set_up_autoload_for_constant('AutoloadedWithConventionalFilename::NONEXISTENT')
       }
     end
 
-    describe 'whose source files have unconventional names' do
-      let(:source_file) {
-        'spec/fixtures/namespace_that_is_autoloaded_unconventionally.rb'
+    describe 'conventional names' do
+      subject(:source_file) {
+        'spec/fixtures/autoloaded_with_conventional_filename_only.rb'
       }
 
-      specify('dynamically defines a nested constant stored in a unconventionally-named file') {
-        expect(source_file).to autoload_a_constant_named('NamespaceThatIsAutoloadedUnconventionally::Nested')
+      it { is_expected.to define_constant(:AutoloadedWithConventionalFilenameOnly) }
+
+      it {
+        is_expected.to define_constant('AutoloadedWithConventionalFilenameOnly::OldSchoolAutoload')
       }
 
-      specify('does not pollute the namespace') {
-        expect(source_file).to define_only_constants_named(:Nested).
-                               in_a_namespace_named(:NamespaceThatIsAutoloadedUnconventionally)
+      it {
+        is_expected.to define_constant('AutoloadedWithConventionalFilenameOnly::Nested').
+                       dynamically
+      }
+
+      it {
+        is_expected.to set_up_autoload_for_constant('AutoloadedWithConventionalFilenameOnly::OldSchoolAutoload').
+                       from_file('fixtures/autoloaded_with_conventional_filename_only/old_school_autoload')
+      }
+
+      it {
+        is_expected.to set_up_autoload_for_constant('AutoloadedWithConventionalFilenameOnly::Nested').
+                       from_file('fixtures/autoloaded_with_conventional_filename_only/nested')
+      }
+
+      it {
+        is_expected.not_to set_up_autoload_for_constant('AutoloadedWithConventionalFilenameOnly::NONEXISTENT')
+      }
+    end
+
+    describe 'unconventional names' do
+      subject(:source_file) {
+        'spec/fixtures/autoloaded_with_unconventional_filenames.rb'
+      }
+
+      it {
+        is_expected.to define_constant(:AutoloadedWithUnconventionalFilenames)
+      }
+
+      it {
+        is_expected.to define_constant('AutoloadedWithUnconventionalFilenames::OldSchoolAutoload')
+      }
+
+      it {
+        is_expected.to define_constants('AutoloadedWithUnconventionalFilenames::Nested').
+                       dynamically
+      }
+
+      it {
+        is_expected.to set_up_autoload_for_constant('AutoloadedWithUnconventionalFilenames::OldSchoolAutoload').
+                       from_file('fixtures/autoloaded_with_unconventional_filenames/old_school_autoload')
+      }
+
+      it {
+        is_expected.to set_up_autoload_for_constant('AutoloadedWithUnconventionalFilenames::Nested').
+                       from_files('fixtures/autoloaded_with_unconventional_filenames/N-est-ed',
+                                  'fixtures/autoloaded_with_unconventional_filenames/nest_ed')
+      }
+
+      it {
+        is_expected.not_to set_up_autoload_for_constant('AutoloadedWithUnconventionalFilenames::NONEXISTENT')
       }
     end
   end

@@ -40,11 +40,26 @@
 #
 #   end
 #
-# Note that your preferred casing of constants is accommodated automatically:
+# Note that your preferred casing of constants is accommodated automatically.
 #
-#   MyAwesomeGem::DB::MySQL.new
-#   MyAwesomeGem::DB::PostgreSQL.new
-#   MyAwesomeGem::DB::SQLServer.new
+#   # Unlike Kernel#autoload and Module#autoload, Autoloaded is not clairvoyant about
+#   # what constants will be autoloaded.
+#   MyAwesomeGem::DB.constants  # => []
+#
+#   # But like Kernel#autoload and Module#autoload, Autoloaded does tell you which
+#   # source files will be autoloaded. (The difference is that it may return an array
+#   # of potential matches instead of just one filename.)
+#   MyAwesomeGem::DB.autoload? :MySQL        # => 'db/mysql'
+#   MyAwesomeGem::DB.autoload? :PostgreSQL   # => 'db/postgresql'
+#   MyAwesomeGem::DB.autoload? :SQLServer    # => 'db/sql_server'
+#   MyAwesomeGem::DB.autoload? :Nonexistent  # => nil
+#
+#   MyAwesomeGem::DB::MySQL
+#   MyAwesomeGem::DB.constants    # => [:MySQL]
+#   MyAwesomeGem::DB::PostgreSQL
+#   MyAwesomeGem::DB.constants    # => [:MySQL, :PostgreSQL]
+#   MyAwesomeGem::DB::SQLServer
+#   MyAwesomeGem::DB.constants    # => [:MySQL, :PostgreSQL, :SQLServer]
 #
 # _Autoloaded_ does not perform deep autoloading of nested namespaces and
 # directories. This is by design.
@@ -57,7 +72,7 @@
 #   # lib/my_awesome_gem/db.rb
 #   module MyAwesomeGem
 #
-#     # WRONG! Autoloading will not occur.
+#     # WRONG!
 #     extend Autoloaded
 #
 #     module DB
@@ -68,6 +83,10 @@
 #
 #   end
 #
+#   # some_other_file.rb
+#   require 'my_awesome_gem'
+#   MyAwesomeGem::DB  # NameError is raised!
+#
 module Autoloaded
 
   def self.extended(other_module)
@@ -75,14 +94,22 @@ module Autoloaded
     dir_path = "#{::File.dirname caller_file_path}/#{::File.basename caller_file_path, '.rb'}"
     other_module.module_eval <<-end_module_eval, __FILE__, __LINE__
       def self.autoload?(symbol)
-        #{dir_path.inspect}
+        if (old_school = super)
+          return old_school
+        end
+
+        require 'autoloaded/constant'
+        filenames = []
+        ::Autoloaded::Constant.new(symbol).each_matching_filename_in #{dir_path.inspect} do |filename|
+          filenames << filename
+        end
+        (filenames.length <= 1) ? filenames.first : filenames
       end
 
       def self.const_missing(symbol)
         require 'autoloaded/constant'
         ::Autoloaded::Constant.new(symbol).each_matching_filename_in #{dir_path.inspect} do |filename|
-          without_ext = "\#{::File.dirname filename}/\#{::File.basename filename}"
-          require without_ext
+          require filename
           if const_defined?(symbol)
             begin
               return const_get(symbol)
@@ -91,7 +118,7 @@ module Autoloaded
           end
         end
 
-        super symbol
+        super
       end
     end_module_eval
   end

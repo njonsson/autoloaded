@@ -29,6 +29,25 @@ private
     '.rb'
   end
 
+  def filename_without_extension(filename)
+    "#{::File.dirname filename}/#{::File.basename filename, extension}"
+  end
+
+  def filename_without_load_path_prefix(filename)
+    first_applicable_load_path = $:.detect do |path|
+      filename.start_with? path
+    end
+    if first_applicable_load_path
+      regexp = /^#{::Regexp.escape first_applicable_load_path}\/?/
+      filename = filename.gsub(regexp, '')
+    end
+    filename
+  end
+
+  def format_filename(filename)
+    filename_without_load_path_prefix filename_without_extension(filename)
+  end
+
   def name_signature
     @name_signature ||= signature(name)
   end
@@ -53,7 +72,7 @@ private
       filename_signature = signature(::File.basename(filename, extension))
       if (filename_signature == name_signature) &&
          unless_in.add?(::File.basename(filename))
-        block.call filename
+        block.call format_filename(filename)
       end
     end
   end
@@ -64,7 +83,7 @@ private
     end
     qualified = ::File.join(directory, name_source_filename)
     if ::File.file?(qualified) && unless_in.add?(name_source_filename)
-      block.call qualified
+      block.call format_filename(qualified)
     end
   end
 

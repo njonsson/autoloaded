@@ -70,12 +70,27 @@ module MyAwesomeGem
 end
 ```
 
-Note that your preferred casing of constants is accommodated automatically:
+Note that your preferred casing of constants is accommodated automatically.
 
 ```ruby
-MyAwesomeGem::DB::MySQL.new
-MyAwesomeGem::DB::PostgreSQL.new
-MyAwesomeGem::DB::SQLServer.new
+# Unlike Kernel#autoload and Module#autoload, Autoloaded is not clairvoyant about
+# what constants will be autoloaded.
+MyAwesomeGem::DB.constants  # => []
+
+# But like Kernel#autoload and Module#autoload, Autoloaded does tell you which
+# source files will be autoloaded. (The difference is that it may return an array
+# of potential matches instead of just one filename.)
+MyAwesomeGem::DB.autoload? :MySQL        # => 'db/mysql'
+MyAwesomeGem::DB.autoload? :PostgreSQL   # => 'db/postgresql'
+MyAwesomeGem::DB.autoload? :SQLServer    # => 'db/sql_server'
+MyAwesomeGem::DB.autoload? :Nonexistent  # => nil
+
+MyAwesomeGem::DB::MySQL
+MyAwesomeGem::DB.constants    # => [:MySQL]
+MyAwesomeGem::DB::PostgreSQL
+MyAwesomeGem::DB.constants    # => [:MySQL, :PostgreSQL]
+MyAwesomeGem::DB::SQLServer
+MyAwesomeGem::DB.constants    # => [:MySQL, :PostgreSQL, :SQLServer]
 ```
 
 _Autoloaded_ does not perform deep autoloading of nested namespaces and
@@ -99,7 +114,7 @@ module MyAwesomeGem; end
 # lib/my_awesome_gem/db.rb
 module MyAwesomeGem
 
-  # WRONG! Autoloading will not occur.
+  # WRONG!
   extend Autoloaded
 
   module DB
@@ -109,6 +124,10 @@ module MyAwesomeGem
   end
 
 end
+
+# some_other_file.rb
+require 'my_awesome_gem'
+MyAwesomeGem::DB  # NameError is raised!
 ```
 
 ## Contributing

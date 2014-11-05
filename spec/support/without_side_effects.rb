@@ -10,7 +10,7 @@ def without_side_effects
 
     begin
       out_writer.write Marshal.dump(yield)
-    rescue => e
+    rescue Exception => e
       clean_backtrace = e.backtrace.reject do |frame|
         frame.include? __FILE__
       end
