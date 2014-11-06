@@ -21,19 +21,20 @@ autoloading facilities such as those provided by the
 
 ## Installation
 
-Add this line to your application’s Gemfile:
-
-```ruby
-gem 'autoloaded', '~> 0'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Install [the RubyGem][RubyGems-release].
 
     $ gem install autoloaded
+
+Or you may want to make Autoloaded a dependency of your project by using
+[Bundler][Bundler]
+
+```ruby
+# Gemfile
+
+source 'http://rubygems.org'
+
+gem 'autoloaded', '~> 1'
+```
 
 ## Usage
 
@@ -158,6 +159,7 @@ Released under the [MIT License][MIT-License].
 [RubyGems-release]:            http://rubygems.org/gems/autoloaded                            "RubyGems release of Autoloaded"
 [Ruby-Core-Module-autoload]:   http://ruby-doc.org/core/Module.html#method-i-autoload         "‘Module#autoload’ method in the Ruby Core Library"
 [ActiveSupport-Autoload]:      http://api.rubyonrails.org/classes/ActiveSupport/Autoload.html "‘ActiveSupport::Autoload’ module in the Rails API"
+[Bundler]:                     http://bundler.io
 [fork-Autoloaded]:             https://github.com/njonsson/autoloaded/fork                    "Fork the official repository of Autoloaded"
 [compare-Autoloaded-branches]: https://github.com/njonsson/autoloaded/compare                 "Compare branches of Autoloaded repositories"
 [MIT-License]:                 http://github.com/njonsson/autoloaded/blob/master/License.md   "MIT License claim for Autoloaded"
