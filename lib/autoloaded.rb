@@ -89,6 +89,10 @@
 #
 module Autoloaded
 
+  autoload :Constant, 'autoloaded/constant'
+  autoload :Refine,   'autoloaded/refine'
+  autoload :VERSION,  'autoloaded/version'
+
   def self.extended(other_module)
     caller_file_path = caller_locations.first.absolute_path
     dir_path = "#{::File.dirname caller_file_path}/#{::File.basename caller_file_path, '.rb'}"
@@ -123,8 +127,4 @@ module Autoloaded
     end_module_eval
   end
 
-end
-
-Dir.glob "#{File.dirname __FILE__}/#{File.basename __FILE__, '.rb'}/*.rb" do |f|
-  require_relative "#{File.basename __FILE__, '.rb'}/#{File.basename f, '.rb'}"
 end
