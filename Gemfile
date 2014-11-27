@@ -9,7 +9,7 @@ end
 
 group :doc do
   gem   'yard',                      '~> 0', require: false
-  gem   'rdiscount',                 '~> 2', require: false
+  gem   'rdiscount',                 '~> 2', require: false, platforms: :mri
 end
 
 group :test do
