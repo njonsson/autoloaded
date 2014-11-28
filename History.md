@@ -1,5 +1,9 @@
 # Version history for the _Autoloaded_ project
 
+## <a name="v1.2.0"></a>v1.2.0, Fri 11/28/2013
+
+* Add support for [JRuby][JRuby] (Ruby v2.x-compatible versions)
+
 ## <a name="v1.1.0"></a>v1.1.0, Tue 11/04/2013
 
 * Correct/improve autoload behavior
@@ -19,6 +23,7 @@
 
 (First release)
 
+[JRuby]:                      http://jruby.org
 [Ruby-Core-Module-autoload]:  http://ruby-doc.org/core/Module.html#method-i-autoload-3F   "‘Module#autoload’ method in the Ruby Core Library"
 [Ruby-Core-Module-constants]: http://ruby-doc.org/core/Module.html#method-i-constants     "‘Module#constants’ method in the Ruby Core Library"
 [readme]:                     http://github.com/njonsson/autoloaded/blob/master/README.md "Autoloaded readme"
