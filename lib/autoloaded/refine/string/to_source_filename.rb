@@ -1,3 +1,5 @@
+require 'autoloaded/compatibility/refine_and_using'
+
 module Autoloaded
 
   module Refine
