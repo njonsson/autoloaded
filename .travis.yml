@@ -2,7 +2,7 @@ language: ruby
 bundler_args: --without debug doc tooling
 rvm:
   - 2.0
-  - 2.1.0
+  - 2.1
   - ruby-head
   - jruby-head
 script: "bundle exec rake test"
