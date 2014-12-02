@@ -25,8 +25,20 @@ Install [the RubyGem][RubyGems-release].
 
     $ gem install autoloaded
 
+Use Autoloaded in your RubyGem project by making it a runtime dependency.
+
+```ruby
+# my_awesome_gem.gemspec
+
+Gem::Specification.new do |spec|
+  # ...
+  spec.add_dependency 'autoloaded', '~> 1.2'
+  # ...
+end
+```
+
 Or you may want to make Autoloaded a dependency of your project by using
-[Bundler][Bundler]
+[Bundler][Bundler].
 
 ```ruby
 # Gemfile
