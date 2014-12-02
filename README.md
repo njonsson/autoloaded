@@ -33,7 +33,7 @@ Or you may want to make Autoloaded a dependency of your project by using
 
 source 'http://rubygems.org'
 
-gem 'autoloaded', '~> 1'
+gem 'autoloaded', '~> 1.2'
 ```
 
 ## Usage
