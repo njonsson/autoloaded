@@ -38,8 +38,8 @@ RSpec.describe Autoloaded do
       }
     end
 
-    describe 'extending a namespace whose constituent source files have' do
-      describe 'conventional names used for autoloading' do
+    describe 'extending a namespace whose constituent source files include' do
+      describe 'a conventional source filename used for autoloading' do
         subject(:source_file) {
           'spec/fixtures/autoloaded_with_conventional_filename.rb'
         }
@@ -76,7 +76,7 @@ RSpec.describe Autoloaded do
         }
       end
 
-      describe 'conventional names' do
+      describe 'a conventional source filename only' do
         subject(:source_file) {
           'spec/fixtures/autoloaded_with_conventional_filename_only.rb'
         }
@@ -107,7 +107,7 @@ RSpec.describe Autoloaded do
         }
       end
 
-      describe 'unconventional names' do
+      describe 'unconventional source filenames' do
         subject(:source_file) {
           'spec/fixtures/autoloaded_with_unconventional_filenames.rb'
         }
