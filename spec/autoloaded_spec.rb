@@ -9,7 +9,13 @@ RSpec.describe Autoloaded do
   end
 
   begin
-    fork
+    fork do
+      # The codeclimate-test-reporter RubyGem uses Kernel#at_exit to hook the
+      # end of test/spec runs for sending coverage statistics to their web
+      # service. We need to skip that hook in this process fork because this is
+      # not the end of a test/spec run, only of a process fork.
+      exit!(true) if ENV['CODECLIMATE_REPO_TOKEN']
+    end
   rescue NotImplementedError => e
     pending "[pending because #{e.message}]"
   else
