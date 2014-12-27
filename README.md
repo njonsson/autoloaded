@@ -494,11 +494,11 @@ directories. This is by design.
 Released under the [MIT License][MIT-License].
 
 [Autoloaded graphic]:           https://farm5.staticflickr.com/4134/4941065976_54737fe145.jpg
-[Travis CI build status]:       https://secure.travis-ci.org/njonsson/autoloaded.svg?branch=master
+[Travis CI build status]:       https://secure.travis-ci.org/njonsson/autoloaded.svg?branch=v1.x
 [Code Climate quality report]:  https://codeclimate.com/github/njonsson/autoloaded/badges/gpa.svg
 [Code Climate coverage report]: https://codeclimate.com/github/njonsson/autoloaded/badges/coverage.svg
 [Gemnasium build status]:       https://gemnasium.com/njonsson/autoloaded.svg
-[Inch CI build status]:         http://inch-ci.org/github/njonsson/autoloaded.svg?branch=master
+[Inch CI build status]:         http://inch-ci.org/github/njonsson/autoloaded.svg?branch=v1.x
 [RubyGems release]:             https://badge.fury.io/rb/autoloaded.svg
 
 [spider-gear-image]:           https://www.flickr.com/photos/dongkwan/4941065976              "spider gear image by Ernesto Andrade"
