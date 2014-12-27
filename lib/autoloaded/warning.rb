@@ -33,6 +33,8 @@ module Autoloaded::Warning
     #                                      establishing autoloading
     #
     # @return [Module] _Warning_
+    #
+    # @raise [ArgumentError] one or more keywords are missing
     def changing_autoload(constant_name:        raise(::ArgumentError,
                                                       'missing keyword: constant_name'),
                           old_source_filename:  raise(::ArgumentError,
@@ -94,6 +96,8 @@ module Autoloaded::Warning
     #                                      establishing autoloading
     #
     # @return [Module] _Warning_
+    #
+    # @raise [ArgumentError] one or more keywords are missing
     def existing_constant(constant_name:        raise(::ArgumentError,
                                                       'missing keyword: constant_name'),
                           source_filename:      raise(::ArgumentError,
