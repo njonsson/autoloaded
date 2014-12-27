@@ -166,7 +166,7 @@ module Autoloaded
     #
     #   @see #autoload!
     #   @see #from
-    %i(except only with).each do |attr|
+    [:except, :only, :with].each do |attr|
       define_method attr do |*arguments|
         attr_specs = specifications.send(attr)
         if arguments.empty?

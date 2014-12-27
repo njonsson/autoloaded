@@ -24,25 +24,33 @@ module Autoloaded::Warning
     # Prints a warning message to _#io_ concerning an existing autoloaded
     # constant for which the autoloaded source file is being changed.
     #
-    # @param [Symbol] constant_name        the name of the constant
-    # @param [String] old_source_filename  the name of the existing autoloaded
-    #                                      source file
-    # @param [String] new_source_filename  the name of the new autoloaded source
-    #                                      file
-    # @param [String] host_source_location the file and line number of the source
-    #                                      establishing autoloading
+    # @param [Hash] keywords the parameters of the warning message
+    # @option keywords [Symbol] :constant_name        the name of the constant
+    # @option keywords [String] :old_source_filename  the name of the existing
+    #                                                 autoloaded source file
+    # @option keywords [String] :new_source_filename  the name of the new
+    #                                                 autoloaded source file
+    # @option keywords [String] :host_source_location the file and line number of
+    #                                                 the source establishing
+    #                                                 autoloading
     #
     # @return [Module] _Warning_
     #
     # @raise [ArgumentError] one or more keywords are missing
-    def changing_autoload(constant_name:        raise(::ArgumentError,
-                                                      'missing keyword: constant_name'),
-                          old_source_filename:  raise(::ArgumentError,
-                                                      'missing keyword: old_source_filename'),
-                          new_source_filename:  raise(::ArgumentError,
-                                                      'missing keyword: new_source_filename'),
-                          host_source_location: raise(::ArgumentError,
-                                                      'missing keyword: host_source_location'))
+    def changing_autoload(keywords)
+      constant_name = keywords.fetch :constant_name do
+        raise ::ArgumentError, 'missing keyword: constant_name'
+      end
+      old_source_filename = keywords.fetch :old_source_filename do
+        raise ::ArgumentError, 'missing keyword: old_source_filename'
+      end
+      new_source_filename = keywords.fetch :new_source_filename do
+        raise ::ArgumentError, 'missing keyword: new_source_filename'
+      end
+      host_source_location = keywords.fetch :host_source_location do
+        raise ::ArgumentError, 'missing keyword: host_source_location'
+      end
+
       message = "Existing autoload of \e[4m#{constant_name}\e[0m from "       +
                 "#{old_source_filename.inspect} is being overridden to "      +
                 "autoload from #{new_source_filename.inspect} -- avoid this " +
@@ -90,20 +98,28 @@ module Autoloaded::Warning
     # Prints a warning message to _#io_ concerning a defined constant for which
     # autoloading is being established.
     #
-    # @param [Symbol] constant_name        the name of the constant
-    # @param [String] source_filename      the name of the autoloaded source file
-    # @param [String] host_source_location the file and line number of the source
-    #                                      establishing autoloading
+    # @param [Hash] keywords the parameters of the warning message
+    # @option keywords [Symbol] :constant_name        the name of the constant
+    # @option keywords [String] :source_filename      the name of the autoloaded
+    #                                                 source file
+    # @option keywords [String] :host_source_location the file and line number of
+    #                                                 the source establishing
+    #                                                 autoloading
     #
     # @return [Module] _Warning_
     #
     # @raise [ArgumentError] one or more keywords are missing
-    def existing_constant(constant_name:        raise(::ArgumentError,
-                                                      'missing keyword: constant_name'),
-                          source_filename:      raise(::ArgumentError,
-                                                      'missing keyword: source_filename'),
-                          host_source_location: raise(::ArgumentError,
-                                                      'missing keyword: host_source_location'))
+    def existing_constant(keywords)
+      constant_name = keywords.fetch :constant_name do
+        raise ::ArgumentError, 'missing keyword: constant_name'
+      end
+      source_filename = keywords.fetch :source_filename do
+        raise ::ArgumentError, 'missing keyword: source_filename'
+      end
+      host_source_location = keywords.fetch :host_source_location do
+        raise ::ArgumentError, 'missing keyword: host_source_location'
+      end
+
       message = "Existing definition of \e[4m#{constant_name}\e[0m obviates " +
                 "autoloading from #{source_filename.inspect} -- avoid this "  +
                 "warning by using an \e[4monly\e[0m or an \e[4mexcept\e[0m "  +

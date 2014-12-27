@@ -24,21 +24,28 @@ module Autoloaded::Deprecation
     # Prints a deprecation message to _#io_ regarding the specified
     # _deprecated_usage_.
     #
-    # @param [String] deprecated_usage API usage that is soon to be discontinued
-    # @param [String] sanctioned_usage API usage that will succeed
-    #                                  _deprecated_usage_
-    # @param [String] source_filename  the file path of the source invoking the
-    #                                  deprecated API
+    # @param [Hash] keywords the parameters of the deprecation message
+    # @option keywords [String] :deprecated_usage API usage that is soon to be
+    #                                             discontinued
+    # @option keywords [String] :sanctioned_usage API usage that will succeed
+    #                                             _:deprecated_usage_
+    # @option keywords [String] :source_filename  the file path of the source
+    #                                             invoking the deprecated API
     #
     # @return [Module] _Deprecation_
     #
     # @raise [ArgumentError] one or more keywords are missing
-    def deprecate(deprecated_usage: raise(::ArgumentError,
-                                          'missing keyword: deprecated_usage'),
-                  sanctioned_usage: raise(::ArgumentError,
-                                          'missing keyword: sanctioned_usage'),
-                  source_filename:  raise(::ArgumentError,
-                                          'missing keyword: source_filename'))
+    def deprecate(keywords)
+      deprecated_usage = keywords.fetch :deprecated_usage do
+        raise ::ArgumentError, 'missing keyword: deprecated_usage'
+      end
+      sanctioned_usage = keywords.fetch :sanctioned_usage do
+        raise ::ArgumentError, 'missing keyword: sanctioned_usage'
+      end
+      source_filename = keywords.fetch :source_filename do
+        raise ::ArgumentError, 'missing keyword: source_filename'
+      end
+
       deprecation = "\e[33m*** \e[7m DEPRECATED \e[0m "     +
                     "\e[4m#{deprecated_usage}\e[0m -- use " +
                     "\e[4m#{sanctioned_usage}\e[0m instead in #{source_filename}"

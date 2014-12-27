@@ -30,7 +30,7 @@ class Autoloaded::Specifications
   #   @return [Array of Specification] a list of specifications
   #
   #   @api private
-  %i(except only with).each do |attribute_name|
+  [:except, :only, :with].each do |attribute_name|
     define_method attribute_name do
       variable_name = "@#{attribute_name}"
       (instance_variable_get(variable_name) || []).tap do |value|

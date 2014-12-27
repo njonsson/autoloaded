@@ -21,11 +21,11 @@ module Autoloaded::Inflection
     source_filename = source_filename.to_s
     raise(::ArgumentError, "can't be blank") if source_filename.empty?
 
-    translate(source_filename, *%i(file_basename
-                                   camelize_if_lowercase
-                                   nonalphanumeric_to_underscore
-                                   delete_leading_nonalphabetic
-                                   capitalize_first)).to_sym
+    translate(source_filename, *[:file_basename,
+                                 :camelize_if_lowercase,
+                                 :nonalphanumeric_to_underscore,
+                                 :delete_leading_nonalphabetic,
+                                 :capitalize_first]).to_sym
   end
 
 private

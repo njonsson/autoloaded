@@ -12,11 +12,10 @@ module Util
       end
     end
 
-    def namespace_and_unqualified_constant_name(constant_name,
-                                                raise_if_namespace_invalid: false)
+    def namespace_and_unqualified_constant_name(constant_name, options={})
       namespace_name, unqualified_constant_name = split_namespace_and_constant(constant_name)
       if namespace_name && (namespace = constantize(namespace_name)).nil?
-        if raise_if_namespace_invalid
+        if options[:raise_if_namespace_invalid]
           raise "namespace of #{constant_name} is not defined"
         end
       end

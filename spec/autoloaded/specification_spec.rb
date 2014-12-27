@@ -55,7 +55,7 @@ RSpec.describe Autoloaded::Specification do
   end
 
   describe 'with two symbol elements, the second of which is matching' do
-    let(:elements) { %i(Foo FromInflection2) }
+    let(:elements) { [:Foo, :FromInflection2] }
 
     specify { expect(specification.match('baz/qux')).to eq(:FromInflection2) }
   end
@@ -79,7 +79,7 @@ RSpec.describe Autoloaded::Specification do
   end
 
   describe 'with a hash element in which an array key has a match' do
-    let(:elements) { [{%i(Foo FromInflection2) => 'bar/baz'}] }
+    let(:elements) { [{[:Foo, :FromInflection2] => 'bar/baz'}] }
 
     specify { expect(specification.match('qux')).to eq('bar/baz') }
   end
@@ -91,7 +91,7 @@ RSpec.describe Autoloaded::Specification do
   end
 
   describe 'with a nonmatching string and a hash element in which an array key has a match' do
-    let(:elements) { ['foo', {%i(Bar FromInflection2) => 'baz/qux'}] }
+    let(:elements) { ['foo', {[:Bar, :FromInflection2] => 'baz/qux'}] }
 
     specify { expect(specification.match('quux')).to eq('baz/qux') }
   end

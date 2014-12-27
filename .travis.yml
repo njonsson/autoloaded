@@ -1,6 +1,7 @@
 language: ruby
 bundler_args: --without debug doc tooling
 rvm:
+  - 1.9
   - 2.0
   - 2.1
   - ruby-head
