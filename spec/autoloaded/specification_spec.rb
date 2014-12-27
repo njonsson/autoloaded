@@ -37,15 +37,15 @@ RSpec.describe Autoloaded::Specification do
   end
 
   describe 'with one matching string element' do
-    let(:elements) { ['foo/bar'] }
+    let(:elements) { ['FOO/BAR'] }
 
     specify { expect(specification.match('foo/bar')).to eq(:FromInflection1) }
   end
 
   describe 'with one matching symbol element' do
-    let(:elements) { [:FromInflection1] }
+    let(:elements) { [:FROMINFLECTION1] }
 
-    specify { expect(specification.match('foo/bar')).to eq(:FromInflection1) }
+    specify { expect(specification.match('foo/bar')).to eq(:FROMINFLECTION1) }
   end
 
   describe 'with two string elements, the second of which is matching' do

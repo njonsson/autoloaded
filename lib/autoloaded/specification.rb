@@ -85,11 +85,11 @@ module Autoloaded
     end
 
     def source_filename_match_constant_name?(file, constant)
-      Inflection.to_constant_name(file) == constant
+      Inflection.to_constant_name(file).to_s.casecmp(constant.to_s).zero?
     end
 
     def source_filename_match_filename?(file1, file2)
-      file1.to_s == file2.to_s
+      file1.to_s.casecmp(file2.to_s).zero?
     end
 
   end
