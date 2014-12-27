@@ -1,5 +1,3 @@
-require 'autoloaded/constant'
-
 RSpec.describe Autoloaded::Constant do
   let(:constant_class) { described_class }
 

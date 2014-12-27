@@ -16,36 +16,12 @@ RSpec::Matchers.define :define_constants do |*constant_names|
 
       load source_file
 
-      any_statically_defined = false
-      if dynamically?
-        any_statically_defined = constant_names.any? do |constant_name|
-          current_scope = Object
-          constant_name.split(Util.namespace_delimiter).all? do |token|
-            current_scope.constants.include?(token.to_sym).tap do |result|
-              if result
-                current_scope = Util.constantize([current_scope.name, token].join(Util.namespace_delimiter))
-              end
-            end
-          end
-        end
-      end
-
-      if any_statically_defined
-        false
-      else
-        constant_names.all? do |constant_name|
-          namespace, unqualified_constant_name = Util.namespace_and_unqualified_constant_name(constant_name,
-                                                                                              raise_if_namespace_invalid: true)
-          (!dynamically? ||
-           !namespace.constants.include?(unqualified_constant_name.to_sym)) &&
-            Util.constantize(constant_name)
-        end
+      constant_names.all? do |constant_name|
+        Util.namespace_and_unqualified_constant_name constant_name,
+                                                     raise_if_namespace_invalid: true
+        Util.constantize constant_name
       end
     end
-  end
-
-  chain :dynamically do
-    @dynamically = true
   end
 
   description do
@@ -58,12 +34,7 @@ RSpec::Matchers.define :define_constants do |*constant_names|
                    else
                      "constants #{constant_names.join ' and '}"
                  end
-    fragments << 'dynamically' if dynamically?
     "define #{fragments.join ' '}"
-  end
-
-  def dynamically?
-    @dynamically
   end
 end
 

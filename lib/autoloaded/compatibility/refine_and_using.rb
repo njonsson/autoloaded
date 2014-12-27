@@ -1,6 +1,7 @@
 # Fall back to monkeypatching if refinements are not supported.
 
 unless ::Module.private_instance_methods.include?(:refine)
+  # @api private
   class ::Module
 
   private
@@ -14,4 +15,5 @@ end
 
 unless private_methods.include?(:using)
   def using(*arguments); end
+  private :using
 end

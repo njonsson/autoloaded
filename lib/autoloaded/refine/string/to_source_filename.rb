@@ -10,8 +10,20 @@ module Autoloaded
 
 end
 
+# Refines _String_ to translate a constant name into a source filename.
+#
+# @since 0.0.1
+#
+# @api private
 module Autoloaded::Refine::String::ToSourceFilename
 
+  # @!method to_source_filename
+  #   Translates the name of a constant into the name of a source file.
+  #
+  #   @return [String] the name of a source file corresponding to the name of a
+  #                    constant
+  #
+  #   @note Namespaces are ignored rather than translated into directories.
   refine ::String do
     def replace_nonalphanumeric_sequence_with_separator
       gsub(/[^a-z0-9]+/i, separator.to_s)

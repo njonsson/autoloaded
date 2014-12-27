@@ -1,100 +1,25 @@
-# coding: utf-8
+# Eliminates the drudgery of handcrafting a Ruby Core library +autoload+
+# statement for each Ruby source code file in your project.
 #
-# When used to extend a module, the _Autoloaded_ module dynamically loads
-# constants into that module from source files contained in its filesystem path.
-#
-# @note You must extend a namespace with _Autoloaded_ from within the file in
-#   which the namespace is defined. This is because _Autoloaded_ utilizes the
-#   source file path of the namespace to establish which directory will be
-#   autoloaded. That path is discoverable only via the stack trace of `extend
-#   Autoloaded`.
-#
-# Suppose you have the following source files:
-#
-# * lib/
-#   * my_awesome_gem/
-#     * db/
-#       * mysql.rb
-#       * postgresql.rb
-#       * sql_server.rb
-#     * db.rb
-#   * my_awesome_gem.rb
-#
-# The following statements establish autoloading — one statement per namespace:
-#
-#   # lib/my_awesome_gem.rb
-#   module MyAwesomeGem
-#
-#     extend Autoloaded
-#
-#   end
-#
-#   # lib/my_awesome_gem/db.rb
-#   module MyAwesomeGem
-#
-#     module DB
-#
-#       extend Autoloaded
-#
-#     end
-#
-#   end
-#
-# Note that your preferred casing of constants is accommodated automatically.
-#
-#   # Unlike Kernel#autoload and Module#autoload, Autoloaded is not clairvoyant about
-#   # what constants will be autoloaded.
-#   MyAwesomeGem::DB.constants  # => []
-#
-#   # But like Kernel#autoload and Module#autoload, Autoloaded does tell you which
-#   # source files will be autoloaded. (The difference is that it may return an array
-#   # of potential matches instead of just one filename.)
-#   MyAwesomeGem::DB.autoload? :MySQL        # => 'db/mysql'
-#   MyAwesomeGem::DB.autoload? :PostgreSQL   # => 'db/postgresql'
-#   MyAwesomeGem::DB.autoload? :SQLServer    # => 'db/sql_server'
-#   MyAwesomeGem::DB.autoload? :Nonexistent  # => nil
-#
-#   MyAwesomeGem::DB::MySQL
-#   MyAwesomeGem::DB.constants    # => [:MySQL]
-#   MyAwesomeGem::DB::PostgreSQL
-#   MyAwesomeGem::DB.constants    # => [:MySQL, :PostgreSQL]
-#   MyAwesomeGem::DB::SQLServer
-#   MyAwesomeGem::DB.constants    # => [:MySQL, :PostgreSQL, :SQLServer]
-#
-# _Autoloaded_ does not perform deep autoloading of nested namespaces and
-# directories. This is by design.
-#
-# In the following example, autoloading of the _MyAwesomeGem_ namespace will not occur because the name of the source file in which the `extend` statement is invoked does not match the name of the namespace.
-#
-#   # lib/my_awesome_gem.rb
-#   module MyAwesomeGem; end
-#
-#   # lib/my_awesome_gem/db.rb
-#   module MyAwesomeGem
-#
-#     # WRONG!
-#     extend Autoloaded
-#
-#     module DB
-#
-#       extend Autoloaded
-#
-#     end
-#
-#   end
-#
-#   # some_other_file.rb
-#   require 'my_awesome_gem'
-#   MyAwesomeGem::DB  # NameError is raised!
-#
+# @since 0.0.1
 module Autoloaded
 
-  autoload :Constant, 'autoloaded/constant'
-  autoload :Refine,   'autoloaded/refine'
-  autoload :VERSION,  'autoloaded/version'
+  autoload :Autoloader,          'autoloaded/autoloader'
+  autoload :Constant,            'autoloaded/constant'
+  autoload :Deprecation,         'autoloaded/deprecation'
+  autoload :Inflection,          'autoloaded/inflection'
+  autoload :LoadPathedDirectory, 'autoloaded/load_pathed_directory'
+  autoload :Refine,              'autoloaded/refine'
+  autoload :Specification,       'autoloaded/specification'
+  autoload :Specifications,      'autoloaded/specifications'
+  autoload :VERSION,             'autoloaded/version'
+  autoload :Warning,             'autoloaded/warning'
 
   def self.extended(other_module)
     caller_file_path = caller_locations.first.absolute_path
+    Deprecation.deprecate deprecated_usage: "extend #{name}",
+                          sanctioned_usage: "#{name}.module { }",
+                          source_filename:  caller_file_path
     dir_path = "#{::File.dirname caller_file_path}/#{::File.basename caller_file_path, '.rb'}"
     other_module.module_eval <<-end_module_eval, __FILE__, __LINE__
       def self.autoload?(symbol)
@@ -125,6 +50,94 @@ module Autoloaded
         super
       end
     end_module_eval
+  end
+
+  # @!method self.module
+  #   Autoloads constants that match files in the source directory.
+  #
+  #   @yield [Autoloader] accepts options for regulating autoloading
+  #
+  #   @return [Array of Array] the arguments passed to each +autoload+ statement
+  #                            made
+  #
+  #   @raise [LocalJumpError] no block is given
+  #
+  #   @since 1.3
+  #
+  #   @example Autoloading a namespace
+  #     # lib/my_awesome_gem/db.rb
+  #
+  #     module MyAwesomeGem
+  #
+  #       Autoloaded.module { }
+  #
+  #     end
+  #
+  #   @example Autoloading with optional specifications
+  #     # lib/my_awesome_gem/db.rb
+  #
+  #     module MyAwesomeGem
+  #
+  #       class DB
+  #
+  #         results = Autoloaded.class do |autoloaded|
+  #           autoloaded.with   :MySQL, :PostgreSQL, [:Access, :SQLServer] => 'MicroSoft'
+  #           autoloaded.except 'SELF-DESTRUCT!'
+  #         end
+  #         STDOUT.puts results.inspect  # See output below.
+  #
+  #       end
+  #
+  #     end
+  #
+  #     # [[:Access,     'my_awesome_gem/db/MicroSoft'  ],
+  #     #  [:SQLServer,  'my_awesome_gem/db/MicroSoft'  ],
+  #     #  [:MySQL,      'my_awesome_gem/db/mysql'      ],
+  #     #  [:Oracle,     'my_awesome_gem/db/oracle'     ],
+  #     #  [:PostgreSQL, 'my_awesome_gem/db/postgre_sql']]
+  def self.module(&block)
+    raise(::LocalJumpError, 'no block given (yield)') unless block
+
+    yield(autoloader = Autoloader.new(block.binding))
+    autoloader.autoload!
+  end
+
+  # Enables or disables warning messages depending on the specified _enabling_
+  # argument.
+  #
+  # @param [Object] enabling disables warnings if +nil+ or +false+
+  #
+  # @yield if a block is given, the value of _#warn?_ is reset after the block is
+  #        called
+  #
+  # @return if a block is given, the result of calling the block
+  # @return [Autoloaded] if a block is not given, _Autoloaded_ (_Module_)
+  #
+  # @since 1.3
+  #
+  # @see .warn?
+  def self.warn(enabling, &block)
+    result = Warning.enable(enabling, &block)
+
+    block ? result : self
+  end
+
+  # Indicates whether warning messages are enabled or disabled.
+  #
+  # @return [true] if warning messages are enabled
+  # @return [false] if warning messages are disabled
+  #
+  # @since 1.3
+  #
+  # @see .warn
+  def self.warn?
+    Warning.enabled?
+  end
+
+  class << self
+
+    alias_method :class, :module
+
   end
 
 end

@@ -1,11 +1,14 @@
-require 'autoloaded/refine/string/to_source_filename'
 require 'set'
 
 using ::Autoloaded::Refine::String::ToSourceFilename
 
 module Autoloaded; end
 
-# @private
+# Represents a Ruby constant.
+#
+# @since 0.0.1
+#
+# @api private
 class Autoloaded::Constant
 
   attr_reader :name

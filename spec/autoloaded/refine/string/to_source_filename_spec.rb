@@ -1,5 +1,3 @@
-require 'autoloaded/refine/string/to_source_filename'
-
 using Autoloaded::Refine::String::ToSourceFilename
 
 RSpec.describe Autoloaded::Refine::String::ToSourceFilename do
