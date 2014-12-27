@@ -1,5 +1,10 @@
 # Version history for the _Autoloaded_ project
 
+## <a name="v2.0.0"></a>v2.0.0, Sat 12/27/2013
+
+* Add support for Ruby v1.9.x
+* Remove deprecated API
+
 ## <a name="v1.3.0"></a>v1.3.0, Fri 12/26/2013
 
 * Add support for relative class references with a new API
