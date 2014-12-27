@@ -34,7 +34,7 @@ Use _Autoloaded_ in your RubyGem project by making it a runtime dependency.
 
 Gem::Specification.new do |spec|
   # ...
-  spec.add_dependency 'autoloaded', '~> 1'
+  spec.add_dependency 'autoloaded', '~> 2'
   # ...
 end
 ```
@@ -47,7 +47,7 @@ Or you may want to make _Autoloaded_ a dependency of your project by using
 
 source 'http://rubygems.org'
 
-gem 'autoloaded', '~> 1'
+gem 'autoloaded', '~> 2'
 ```
 
 ## Usage
