@@ -5,52 +5,12 @@
 module Autoloaded
 
   autoload :Autoloader,          'autoloaded/autoloader'
-  autoload :Constant,            'autoloaded/constant'
-  autoload :Deprecation,         'autoloaded/deprecation'
   autoload :Inflection,          'autoloaded/inflection'
   autoload :LoadPathedDirectory, 'autoloaded/load_pathed_directory'
-  autoload :Refine,              'autoloaded/refine'
   autoload :Specification,       'autoloaded/specification'
   autoload :Specifications,      'autoloaded/specifications'
   autoload :VERSION,             'autoloaded/version'
   autoload :Warning,             'autoloaded/warning'
-
-  def self.extended(other_module)
-    caller_file_path = caller_locations.first.absolute_path
-    Deprecation.deprecate deprecated_usage: "extend #{name}",
-                          sanctioned_usage: "#{name}.module { }",
-                          source_filename:  caller_file_path
-    dir_path = "#{::File.dirname caller_file_path}/#{::File.basename caller_file_path, '.rb'}"
-    other_module.module_eval <<-end_module_eval, __FILE__, __LINE__
-      def self.autoload?(symbol)
-        if (old_school = super)
-          return old_school
-        end
-
-        require 'autoloaded/constant'
-        filenames = []
-        ::Autoloaded::Constant.new(symbol).each_matching_filename_in #{dir_path.inspect} do |filename|
-          filenames << filename
-        end
-        (filenames.length <= 1) ? filenames.first : filenames
-      end
-
-      def self.const_missing(symbol)
-        require 'autoloaded/constant'
-        ::Autoloaded::Constant.new(symbol).each_matching_filename_in #{dir_path.inspect} do |filename|
-          require filename
-          if const_defined?(symbol)
-            begin
-              return const_get(symbol)
-            rescue ::NameError
-            end
-          end
-        end
-
-        super
-      end
-    end_module_eval
-  end
 
   # @!method self.module
   #   Autoloads constants that match files in the source directory.
