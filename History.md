@@ -1,5 +1,9 @@
 # Version history for the _Autoloaded_ project
 
+## <a name="v1.3.0"></a>v1.3.0, Fri 12/26/2013
+
+* Add support for relative class references with a new API
+
 ## <a name="v1.2.0"></a>v1.2.0, Fri 11/28/2013
 
 * Add support for [JRuby][JRuby] (Ruby v2.x-compatible versions)
