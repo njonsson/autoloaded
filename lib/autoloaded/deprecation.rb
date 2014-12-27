@@ -31,6 +31,8 @@ module Autoloaded::Deprecation
     #                                  deprecated API
     #
     # @return [Module] _Deprecation_
+    #
+    # @raise [ArgumentError] one or more keywords are missing
     def deprecate(deprecated_usage: raise(::ArgumentError,
                                           'missing keyword: deprecated_usage'),
                   sanctioned_usage: raise(::ArgumentError,
