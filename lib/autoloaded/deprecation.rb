@@ -36,15 +36,9 @@ module Autoloaded::Deprecation
     #
     # @raise [ArgumentError] one or more keywords are missing
     def deprecate(keywords)
-      deprecated_usage = keywords.fetch :deprecated_usage do
-        raise ::ArgumentError, 'missing keyword: deprecated_usage'
-      end
-      sanctioned_usage = keywords.fetch :sanctioned_usage do
-        raise ::ArgumentError, 'missing keyword: sanctioned_usage'
-      end
-      source_filename = keywords.fetch :source_filename do
-        raise ::ArgumentError, 'missing keyword: source_filename'
-      end
+      deprecated_usage = fetch(keywords, :deprecated_usage)
+      sanctioned_usage = fetch(keywords, :sanctioned_usage)
+      source_filename  = fetch(keywords, :source_filename)
 
       deprecation = "\e[33m*** \e[7m DEPRECATED \e[0m "     +
                     "\e[4m#{deprecated_usage}\e[0m -- use " +
@@ -52,6 +46,14 @@ module Autoloaded::Deprecation
       io.puts deprecation
 
       self
+    end
+
+  private
+
+    def fetch(keywords, keyword)
+      keywords.fetch keyword do
+        raise ::ArgumentError, "missing keyword: #{keyword}"
+      end
     end
 
   end

@@ -38,18 +38,10 @@ module Autoloaded::Warning
     #
     # @raise [ArgumentError] one or more keywords are missing
     def changing_autoload(keywords)
-      constant_name = keywords.fetch :constant_name do
-        raise ::ArgumentError, 'missing keyword: constant_name'
-      end
-      old_source_filename = keywords.fetch :old_source_filename do
-        raise ::ArgumentError, 'missing keyword: old_source_filename'
-      end
-      new_source_filename = keywords.fetch :new_source_filename do
-        raise ::ArgumentError, 'missing keyword: new_source_filename'
-      end
-      host_source_location = keywords.fetch :host_source_location do
-        raise ::ArgumentError, 'missing keyword: host_source_location'
-      end
+      constant_name        = fetch(keywords, :constant_name)
+      old_source_filename  = fetch(keywords, :old_source_filename)
+      new_source_filename  = fetch(keywords, :new_source_filename)
+      host_source_location = fetch(keywords, :host_source_location)
 
       message = "Existing autoload of \e[4m#{constant_name}\e[0m from "       +
                 "#{old_source_filename.inspect} is being overridden to "      +
@@ -110,15 +102,9 @@ module Autoloaded::Warning
     #
     # @raise [ArgumentError] one or more keywords are missing
     def existing_constant(keywords)
-      constant_name = keywords.fetch :constant_name do
-        raise ::ArgumentError, 'missing keyword: constant_name'
-      end
-      source_filename = keywords.fetch :source_filename do
-        raise ::ArgumentError, 'missing keyword: source_filename'
-      end
-      host_source_location = keywords.fetch :host_source_location do
-        raise ::ArgumentError, 'missing keyword: host_source_location'
-      end
+      constant_name        = fetch(keywords, :constant_name)
+      source_filename      = fetch(keywords, :source_filename)
+      host_source_location = fetch(keywords, :host_source_location)
 
       message = "Existing definition of \e[4m#{constant_name}\e[0m obviates " +
                 "autoloading from #{source_filename.inspect} -- avoid this "  +
@@ -128,6 +114,12 @@ module Autoloaded::Warning
     end
 
   private
+
+    def fetch(keywords, keyword)
+      keywords.fetch keyword do
+        raise ::ArgumentError, "missing keyword: #{keyword}"
+      end
+    end
 
     def not!(value)
       value.nil? || (value == false)
