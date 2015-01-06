@@ -1,8 +1,8 @@
 module Autoloaded; end
 
 # Translates source filenames into constants.
-  #
-  # @since 1.3
+#
+# @since 1.3
 #
 # @api private
 module Autoloaded::Inflection
