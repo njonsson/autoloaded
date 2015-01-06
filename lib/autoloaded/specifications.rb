@@ -8,26 +8,32 @@ module Autoloaded; end
 class Autoloaded::Specifications
 
   # @!method except
-  #   Specifications for excluding source files from being autoloaded.
+  #   _Specifications_ for excluding source files from being autoloaded.
   #
-  #   @return [Array of Specification] a list of specifications
+  #   @return [Array of Specification]
+  #
+  #   @see Specification
   #
   #   @api private
   #
   # @!method only
-  #   Specifications for narrowing the set of source files being autoloaded as
+  #   _Specifications_ for narrowing the set of source files being autoloaded as
   #   well as optionally renaming and/or reorganizing their corresponding
   #   constants.
   #
-  #   @return [Array of Specification] a list of specifications
+  #   @return [Array of Specification]
+  #
+  #   @see Specification
   #
   #   @api private
   #
   # @!method with
-  #   Specifications for renaming and/or reorganizing the constants corresponding
+  #   _Specifications_ for renaming and/or reorganizing the constants corresponding
   #   to source files being autoloaded.
   #
-  #   @return [Array of Specification] a list of specifications
+  #   @return [Array of Specification]
+  #
+  #   @see Specification
   #
   #   @api private
   %i(except only with).each do |attribute_name|

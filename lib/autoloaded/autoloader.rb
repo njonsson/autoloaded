@@ -7,7 +7,7 @@ module Autoloaded
 
     # The source code context in which autoloading is to occur.
     #
-    # @return [Binding] the source code context in which autoloading is to occur.
+    # @return [Binding]
     #
     # @see #autoload!
     #
