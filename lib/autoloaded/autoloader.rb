@@ -82,11 +82,9 @@ module Autoloaded
             # Don't warn about an existing MyAwesomeGem::VERSION constant since
             # probably it was loaded by a `require 'my_awesome_gem/version'`
             # statement in 'my_awesome_gem.gemspec'.
-            const_full_name = constant_full_name(const)
-            const_tokens = const_full_name.split('::')
-            next if (const_tokens.length == 2) && (const == :VERSION)
+            next if (const == :VERSION)
 
-            Warning.existing_constant constant_name:        const_full_name,
+            Warning.existing_constant constant_name:        constant_full_name(const),
                                       source_filename:      source_filename,
                                       host_source_location: host_source_location
           end
