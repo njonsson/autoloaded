@@ -1,6 +1,6 @@
 # Version history for the _Autoloaded_ project
 
-## <a name="v1.4.0"></a>v1.4.0, Sat 1/24/2015
+## <a name="v1.4.1"></a>v1.4.1, Sat 1/24/2015
 
 * Don’t warn about a _VERSION_ constant presumably loaded by a _.gemspec_
 
