@@ -1,19 +1,23 @@
 # Version history for the _Autoloaded_ project
 
-## <a name="v2.0.0"></a>v2.0.0, Sat 12/27/2013
+## <a name="v2.1.0"></a>v2.1.0 and <a name="v1.4.0"></a>v1.4.0, Sat 1/24/2015
+
+* Don’t warn about a _VERSION_ constant presumably loaded by a _.gemspec_
+
+## <a name="v2.0.0"></a>v2.0.0, Sat 12/27/2014
 
 * Add support for Ruby v1.9.x
 * Remove deprecated API
 
-## <a name="v1.3.0"></a>v1.3.0, Fri 12/26/2013
+## <a name="v1.3.0"></a>v1.3.0, Fri 12/26/2014
 
 * Add support for relative class references with a new API
 
-## <a name="v1.2.0"></a>v1.2.0, Fri 11/28/2013
+## <a name="v1.2.0"></a>v1.2.0, Fri 11/28/2014
 
 * Add support for [JRuby][JRuby] (Ruby v2.x-compatible versions)
 
-## <a name="v1.1.0"></a>v1.1.0, Tue 11/04/2013
+## <a name="v1.1.0"></a>v1.1.0, Tue 11/04/2014
 
 * Correct/improve autoload behavior
   * Instead of returning the source **directory** path from
@@ -24,7 +28,7 @@
     [_Module#constants_][Ruby-Core-Module-constants] in the [readme][readme] and
     in [inline documentation][inline-documentation]
 
-## <a name="v1.0.0"></a>v1.0.0, Wed 10/29/2013
+## <a name="v1.0.0"></a>v1.0.0, Wed 10/29/2014
 
 * Add support for Ruby v2.0
 
