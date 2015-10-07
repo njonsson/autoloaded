@@ -1,3 +1,5 @@
+require 'autoloaded/load_pathed_directory'
+
 RSpec.describe Autoloaded::LoadPathedDirectory do
   before :each do
     allow(directory_class).to receive(:ruby_load_paths).

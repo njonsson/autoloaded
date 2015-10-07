@@ -1,3 +1,9 @@
+require 'autoloaded/autoloader'
+require 'autoloaded/inflection'
+require 'autoloaded/load_pathed_directory'
+require 'autoloaded/specification'
+require 'autoloaded/specifications'
+
 RSpec.describe Autoloaded::Autoloader do
   subject(:autoloader) { autoloader_class.new host_binding }
 

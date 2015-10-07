@@ -1,4 +1,4 @@
-module Autoloaded; end
+require 'autoloaded'
 
 # Holds regulations for autoloading.
 #

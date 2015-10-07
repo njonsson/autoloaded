@@ -1,3 +1,6 @@
+require 'autoloaded'
+require 'autoloaded/autoloader'
+
 RSpec.shared_examples_for "an #{Autoloaded.name} macro" do |macro|
   before :each do
     allow(autoloader_class).to receive(:new).and_return(autoloader)

@@ -1,3 +1,4 @@
+require 'autoloaded/warning'
 require 'stringio'
 
 RSpec.describe Autoloaded::Warning do

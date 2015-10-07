@@ -1,13 +1,22 @@
 language: ruby
+before_install: gem install bundler -v 1.10.6
 bundler_args: --without debug doc tooling
 rvm:
   - 1.9
   - 2.0
   - 2.1
+  - 2.2
   - ruby-head
   - jruby-head
+  - rbx
+  - rbx-2
 script: "bundle exec rake test"
 matrix:
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-head
+    - rvm: rbx
+    - rvm: rbx-2
+branches:
+  except:
+    - /^gh-pages.*$/

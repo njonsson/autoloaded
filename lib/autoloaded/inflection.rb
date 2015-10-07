@@ -1,4 +1,4 @@
-module Autoloaded; end
+require 'autoloaded'
 
 # Translates source filenames into constants.
 #

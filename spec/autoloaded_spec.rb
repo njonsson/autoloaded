@@ -1,4 +1,6 @@
+require 'autoloaded'
 require 'autoloaded_macro_sharedspec'
+require 'autoloaded/warning'
 require 'matchers'
 require 'stringio'
 

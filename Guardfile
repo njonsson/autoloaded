@@ -1,38 +1,37 @@
-interactor :off
+require 'guard/rspec/dsl'
 
 debugger_gem = %w(pry-byebug pry-debugger).detect do |gem|
   `bundle show #{gem} 2>&1 >/dev/null`
   $?.success?
 end
 debugger_require = debugger_gem ? " --require #{debugger_gem}" : nil
-guard :rspec, all_after_pass: true,
-              all_on_start:   true,
-              cmd: "bundle exec rspec#{debugger_require} --format progress" do
-  # Run the corresponding spec (or all specs) when code changes.
-  watch( %r{^lib/(.+)\.rb$} ) do |match|
-    Dir["spec/#{match[1]}_spec.rb"].first || 'spec'
-  end
 
-  # Run a spec when it changes.
-  watch %r{^spec/.+_spec\.rb$}
+guard :rspec, all_on_start: true,
+              all_after_pass: true,
+              cmd: "bundle exec rspec --format progress#{debugger_require}" do
+  dsl = Guard::RSpec::Dsl.new(self)
+  rspec, ruby = dsl.rspec, dsl.ruby
 
-  # Run all specs when a shared spec changes.
-  watch( %r{^spec/.+_sharedspec\.rb$} ) { 'spec' }
+  # RSpec files
+  watch('.rspec')          { rspec.spec_dir }
+  watch rspec.spec_helper  { rspec.spec_dir }
+  watch rspec.spec_support { rspec.spec_dir }
+  watch(%r{^spec/support}) { rspec.spec_dir } # This should not be necessary.
+  watch rspec.spec_files
 
   # Run all specs when a matcher changes.
-  watch( 'spec/matchers.rb' ) { 'spec' }
+  watch('spec/matchers.rb') { 'spec' }
 
-  # Run all specs when a support file changes.
-  watch( %r{^spec/support} ) { 'spec' }
+  # Run all specs when a shared spec changes.
+  watch(%r{^spec/.+_sharedspec\.rb$}) { rspec.spec_dir }
 
   # Run all specs when a fixture changes.
-  watch( %r{^spec/fixtures} ) { 'spec' }
-
-  # Run all specs when the RSpec configuration changes.
-  watch( '.rspec'              ) { 'spec' }
-  watch( 'spec/spec_helper.rb' ) { 'spec' }
+  watch(%r{^spec/fixtures}) { rspec.spec_dir }
 
   # Run all specs when the bundle changes.
-  watch( 'Gemfile.lock'      ) { 'spec' }
-  watch( %r{^(.+)\.gemspec$} ) { 'spec' }
+  watch('Gemfile.lock')      { rspec.spec_dir }
+  watch(%r{^(.+)\.gemspec$}) { rspec.spec_dir }
+
+  # Ruby files
+  dsl.watch_spec_files_for ruby.lib_files
 end
