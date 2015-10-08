@@ -1,3 +1,5 @@
+require 'autoloaded/inflection'
+
 RSpec.describe Autoloaded::Inflection do
   subject(:inflection_module) { described_class }
 

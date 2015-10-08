@@ -1,3 +1,6 @@
+require 'autoloaded/specification'
+require 'autoloaded/inflection'
+
 RSpec.describe Autoloaded::Specification do
   before :each do
     allow(inflector_class).to receive(:to_constant_name).

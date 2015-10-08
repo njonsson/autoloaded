@@ -1,3 +1,4 @@
+require 'autoloaded/deprecation'
 require 'stringio'
 
 RSpec.describe Autoloaded::Deprecation do

@@ -44,7 +44,8 @@ else
       else
         noun_phrase = "#{uncommitted_spec_files.length} uncommitted spec file#{(uncommitted_spec_files.length == 1) ? nil : 's'}"
         desc = "Run #{noun_phrase}"
-        define_spec_task :uncommitted, desc: desc, pattern: uncommitted_spec_files
+        define_spec_task :uncommitted, desc:    desc,
+                                       pattern: uncommitted_spec_files
       end
     else
       noun_phrase = "#{uncommitted_files_in_spec.length} uncommitted file#{uncommitted_files_in_spec.length == 1 ? nil : 's'}"
@@ -52,15 +53,11 @@ else
       define_spec_task :uncommitted, desc: desc, pattern: 'spec'
     end
 
-    define_spec_task :warnings, desc: 'Run specs with Ruby warnings enabled',
+    define_spec_task :warnings, desc:     'Run specs with Ruby warnings enabled',
                                 format:   :progress,
                                 profile:  false,
                                 warnings: true
   end
-
-  desc 'Run specs'
-  task ''       => :spec
-  task :default => :spec
 
   # Support the 'gem test' command.
   define_spec_task :test, desc: '', backtrace: true,

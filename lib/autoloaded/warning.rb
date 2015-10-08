@@ -1,4 +1,4 @@
-module Autoloaded; end
+require 'autoloaded'
 
 # Prints warning messages to _stderr_.
 #

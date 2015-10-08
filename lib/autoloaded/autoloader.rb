@@ -1,3 +1,5 @@
+require 'autoloaded'
+
 module Autoloaded
 
   # Autoloads files in a source directory.

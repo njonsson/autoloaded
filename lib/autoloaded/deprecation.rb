@@ -1,4 +1,4 @@
-module Autoloaded; end
+require 'autoloaded'
 
 # Prints deprecation messages to _stderr_.
 #

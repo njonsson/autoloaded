@@ -1,3 +1,5 @@
+require 'autoloaded'
+
 module Autoloaded
 
   # Describes regulations for autoloading.

@@ -1,3 +1,5 @@
+require 'autoloaded/specifications'
+
 RSpec.describe Autoloaded::Specifications do
   subject(:specifications) { specifications_class.new }
 

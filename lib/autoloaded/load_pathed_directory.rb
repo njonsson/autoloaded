@@ -1,6 +1,5 @@
+require 'autoloaded'
 require 'pathname'
-
-module Autoloaded; end
 
 # Enumerates the source files in a directory, relativizing their paths using the
 # Ruby load path.
