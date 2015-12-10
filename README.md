@@ -173,21 +173,21 @@ You can specify `with` multiple times, and its effects are cumulative.
 # lib/my_awesome_gem.rb
 module MyAwesomeGem
 
-  Autoloaded.module do |autoloaded|
-    autoloaded.with :DB, :VERSION
+  Autoloaded.module do |autoloading|
+    autoloading.with :DB, :VERSION
     # Or:
-    # autoloaded.with :DB
-    # autoloaded.with :VERSION
+    # autoloading.with :DB
+    # autoloading.with :VERSION
     # Or:
-    # autoloaded.with DB: 'db', VERSION: 'version'
+    # autoloading.with DB: 'db', VERSION: 'version'
     # Or:
-    # autoloaded.with DB:      'db'
-    # autoloaded.with VERSION: 'version'
+    # autoloading.with DB:      'db'
+    # autoloading.with VERSION: 'version'
     # Or:
-    # autoloaded.with 'db' => :DB, 'version' => :VERSION
+    # autoloading.with 'db' => :DB, 'version' => :VERSION
     # Or:
-    # autoloaded.with 'db'      => :DB
-    # autoloaded.with 'version' => :VERSION
+    # autoloading.with 'db'      => :DB
+    # autoloading.with 'version' => :VERSION
   end
 
   # The above is the equivalent of:
@@ -202,20 +202,22 @@ module MyAwesomeGem
 
   class DB
 
-    Autoloaded.class do |autoloaded|
-      autoloaded.with :MySQL, :PostgreSQL, [:Access, :SQLServer] => 'MicroSoft'
+    Autoloaded.class do |autoloading|
+      autoloading.with :MySQL, :PostgreSQL, [:Access, :SQLServer] => 'MicroSoft'
       # Or:
-      # autoloaded.with :MySQL,
-      #                 :PostgreSQL,
-      #                 Access:    'MicroSoft',
-      #                 SQLServer: 'MicroSoft'
+      # autoloading.with :MySQL,
+      #                  :PostgreSQL,
+      #                  Access:    'MicroSoft',
+      #                  SQLServer: 'MicroSoft'
       # Or:
-      # autoloaded.with :MySQL, :PostgreSQL, 'MicroSoft' => [:Access, :SQLServer]
+      # autoloading.with :MySQL,
+      #                  :PostgreSQL,
+      #                  'MicroSoft' => [:Access, :SQLServer]
       # Or:
-      # autoloaded.with :MySQL,
-      #                 :PostgreSQL,
-      #                 'MicroSoft' => :Access,
-      #                 'MicroSoft' => :SQLServer
+      # autoloading.with :MySQL,
+      #                  :PostgreSQL,
+      #                  'MicroSoft' => :Access,
+      #                  'MicroSoft' => :SQLServer
       # Or ...
     end
 
@@ -283,12 +285,12 @@ module MyAwesomeGem
 
   class DB
 
-    Autoloaded.class do |autoloaded|
-      autoloaded.with :MySQL, :PostgreSQL, [:Access, :SQLServer] => 'MicroSoft'
+    Autoloaded.class do |autoloading|
+      autoloading.with :MySQL, :PostgreSQL, [:Access, :SQLServer] => 'MicroSoft'
 
-      autoloaded.except 'SELF-DESTRUCT!'
+      autoloading.except 'SELF-DESTRUCT!'
       # Or:
-      # autoloaded.except :SELF_DESTRUCT_
+      # autoloading.except :SELF_DESTRUCT_
       # Or ...
     end
 
@@ -357,12 +359,12 @@ which source files should be autoloaded.
 
 module MyAwesomeGem
 
-  Autoloaded.module do |autoloaded|
+  Autoloaded.module do |autoloading|
     # The following code is not actually very useful since the installed location
     # of a RubyGem varies with the operating system and user preferences. How to
     # compute the path properly is outside the scope of this readme and is left
     # as an exercise for the reader.
-    autoloaded.from '/absolute/path/to/my_awesome_gem'
+    autoloading.from '/absolute/path/to/my_awesome_gem'
   end
 
 end
@@ -448,9 +450,11 @@ module MyAwesomeGem
 
   class DB
 
-    results = Autoloaded.class do |autoloaded|
-      autoloaded.with   :MySQL, :PostgreSQL, [:Access, :SQLServer] => 'MicroSoft'
-      autoloaded.except 'SELF-DESTRUCT!'
+    results = Autoloaded.class do |autoloading|
+      autoloading.with   :MySQL,
+                         :PostgreSQL,
+                         [:Access, :SQLServer] => 'MicroSoft'
+      autoloading.except 'SELF-DESTRUCT!'
     end
     STDOUT.puts results.inspect  # See output below.
 
