@@ -489,6 +489,19 @@ directories. This is by design.
 4. Push to the branch: `git push origin my-new-feature`.
 5. [Create][compare-Autoloaded-branches] a new pull request.
 
+Development
+-----------
+
+After cloning the repository, `bin/setup` to install dependencies. Then `rake` to
+run the tests. You can also `bin/console` to get an interactive prompt that will
+allow you to experiment.
+
+To install this gem onto your local machine, `bundle exec rake install`. To
+release a new version, update the version number in _lib/autoloaded/version.rb_,
+and then `bundle exec rake release`, which will create a Git tag for the version,
+push Git commits and tags, and push the _.gem_ file to
+[RubyGems.org](RubyGems-release).
+
 ## License
 
 Released under the [MIT License][MIT-License].
