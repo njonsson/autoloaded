@@ -1,4 +1,8 @@
-require 'autoloaded'
+require 'autoloaded/inflection'
+require 'autoloaded/load_pathed_directory'
+require 'autoloaded/specification'
+require 'autoloaded/specifications'
+require 'autoloaded/warning'
 
 module Autoloaded
 

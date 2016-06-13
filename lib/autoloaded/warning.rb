@@ -1,5 +1,3 @@
-require 'autoloaded'
-
 # Prints warning messages to _stderr_.
 #
 # @since 1.3

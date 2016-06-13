@@ -1,4 +1,4 @@
-require 'autoloaded'
+require 'autoloaded/inflection'
 
 module Autoloaded
 

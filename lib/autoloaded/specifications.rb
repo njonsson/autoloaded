@@ -1,5 +1,3 @@
-require 'autoloaded'
-
 # Holds regulations for autoloading.
 #
 # @since 1.3
