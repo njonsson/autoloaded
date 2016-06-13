@@ -1,3 +1,4 @@
+require 'autoloaded/refine/string/to_source_filename'
 require 'set'
 
 using ::Autoloaded::Refine::String::ToSourceFilename

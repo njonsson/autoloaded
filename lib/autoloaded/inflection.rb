@@ -1,5 +1,3 @@
-require 'autoloaded'
-
 # Translates source filenames into constants.
 #
 # @since 1.3

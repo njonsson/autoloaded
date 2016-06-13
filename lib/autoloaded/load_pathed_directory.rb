@@ -1,4 +1,3 @@
-require 'autoloaded'
 require 'pathname'
 
 # Enumerates the source files in a directory, relativizing their paths using the
