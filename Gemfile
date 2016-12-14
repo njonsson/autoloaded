@@ -9,6 +9,10 @@ group :debug do
   gem   'pry-debugger', '~> 0',                 platforms: :mri_19
 end
 
+group :development do
+  gem   'json',         '~> 1', require: false, platforms: :mri_19
+end
+
 group :doc do
   gem   'yard',         '~> 0', require: false
   gem   'rdiscount',    '~> 2', require: false
