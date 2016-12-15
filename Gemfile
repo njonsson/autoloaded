@@ -5,12 +5,13 @@ gemspec
 group :debug do
   gem   'pry-byebug',   '~> 3',                 platforms: [:mri_20,
                                                             :mri_21,
-                                                            :mri_22]
+                                                            :mri_22,
+                                                            :mri_23]
   gem   'pry-debugger', '~> 0',                 platforms: :mri_19
 end
 
 group :development do
-  gem   'json',         '~> 1', require: false, platforms: :mri_19
+  gem   'json',         '~> 2', require: false
 end
 
 group :doc do

@@ -18,6 +18,11 @@ matrix:
     - rvm: jruby-head
     - rvm: rbx
     - rvm: rbx-2
+  exclude:
+    - rvm: 1.9
+  include:
+    - rvm: 1.9
+      gemfile: Gemfile_ci_mri_19
 branches:
   except:
     - /^gh-pages.*$/

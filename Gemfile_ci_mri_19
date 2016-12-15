@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+gemspec
+
+group :development do
+  gem 'json', '~> 1', require: false
+end
