@@ -1,0 +1,8 @@
+title: Autoloaded
+description: Eliminates the drudgery of handcrafting an `autoload` statement for each Ruby source code file in your project
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-tactile
+
+gems:
+  - jekyll-mentions
