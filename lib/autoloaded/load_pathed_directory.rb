@@ -95,7 +95,7 @@ private
     # Don't use Pathname#relative_path_from because we want to avoid introducing
     # double dots. The intent is to render the path as relative, if and only if
     # it is a subdirectory of 'other_path'.
-    pattern = /^#{::Regexp.escape other_path.chomp(::File::SEPARATOR)}#{::Regexp.escape ::File::SEPARATOR}?/
+    pattern = /^#{::Regexp.escape other_path.to_s.chomp(::File::SEPARATOR)}#{::Regexp.escape ::File::SEPARATOR}?/
     path.gsub pattern, ''
   end
 
