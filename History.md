@@ -1,5 +1,10 @@
 # Version history for the _Autoloaded_ project
 
+## <a name="v1.5.0"></a>v1.5.0, Wed 2/22/2017
+
+* Add support for Ruby load paths (`$:`) that contain one or more
+  [_Pathname_][Ruby-Stdlib-Pathname] objects
+
 ## <a name="v1.4.1"></a>v1.4.1, Sat 1/24/2015
 
 * Don’t warn about a _VERSION_ constant presumably loaded by a _.gemspec_
@@ -32,7 +37,8 @@
 (First release)
 
 [JRuby]:                      http://jruby.org
-[Ruby-Core-Module-autoload]:  http://ruby-doc.org/core/Module.html#method-i-autoload-3F   "‘Module#autoload’ method in the Ruby Core Library"
-[Ruby-Core-Module-constants]: http://ruby-doc.org/core/Module.html#method-i-constants     "‘Module#constants’ method in the Ruby Core Library"
-[readme]:                     http://github.com/njonsson/autoloaded/blob/master/README.md "Autoloaded readme"
-[inline-documentation]:       http://www.rubydoc.info/github/njonsson/autoloaded          "Autoloaded inline documentation"
+[Ruby-Core-Module-autoload]:  http://ruby-doc.org/core/Module.html#method-i-autoload-3F     "‘Module#autoload’ method in the Ruby Core Library"
+[Ruby-Core-Module-constants]: http://ruby-doc.org/core/Module.html#method-i-constants       "‘Module#constants’ method in the Ruby Core Library"
+[Ruby-Stdlib-Pathname]:       http://ruby-doc.org/stdlib/libdoc/pathname/rdoc/Pathname.html "‘Pathname’ class in the Ruby Standard Library"
+[readme]:                     http://github.com/njonsson/autoloaded/blob/master/README.md   "Autoloaded readme"
+[inline-documentation]:       http://www.rubydoc.info/github/njonsson/autoloaded            "Autoloaded inline documentation"
