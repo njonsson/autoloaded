@@ -1,4 +1,5 @@
 require 'autoloaded/load_pathed_directory'
+require 'pathname'
 
 RSpec.describe Autoloaded::LoadPathedDirectory do
   before :each do
@@ -88,7 +89,7 @@ RSpec.describe Autoloaded::LoadPathedDirectory do
 
       describe 'where #path partially matches multiple Ruby load paths' do
         let(:ruby_load_paths) {
-          [Dir.pwd,
+          [Pathname.new(Dir.pwd),
            File.join(Dir.pwd, 'spec/fixtures'),
            File.join(Dir.pwd, 'spec')]
         }
