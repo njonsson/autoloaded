@@ -213,7 +213,10 @@ module Autoloaded
     # @see #autoload!
     # @see #host_binding
     def from(value=nil)
-      return((@from && @from.path) || default_from) if value.nil?
+      if value.nil?
+        return (instance_variable_defined?(:@from) && @from && @from.path) ||
+               default_from
+      end
 
       # Validate value.
       @from = LoadPathedDirectory.new(value)
@@ -249,7 +252,8 @@ module Autoloaded
     end
 
     def from_load_pathed_directory
-      @from || LoadPathedDirectory.new(default_from)
+      (instance_variable_defined?(:@from) && @from) ||
+        LoadPathedDirectory.new(default_from)
     end
 
     def host_eval(statement)

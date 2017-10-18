@@ -37,7 +37,9 @@ class Autoloaded::Specifications
   %i(except only with).each do |attribute_name|
     define_method attribute_name do
       variable_name = "@#{attribute_name}"
-      (instance_variable_get(variable_name) || []).tap do |value|
+      ((instance_variable_defined?(variable_name) &&
+        instance_variable_get(variable_name)) ||
+       []).tap do |value|
         instance_variable_set variable_name, value
       end
     end
