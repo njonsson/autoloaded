@@ -1,5 +1,9 @@
 # Version history for the _Autoloaded_ project
 
+## <a name="v1.5.1"></a>v1.5.1, Wed 10/18/2017
+
+* Eliminate Ruby warnings about undefined instance variables
+
 ## <a name="v1.5.0"></a>v1.5.0, Wed 2/22/2017
 
 * Add support for Ruby load paths (`$:`) that contain one or more
