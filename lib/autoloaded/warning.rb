@@ -62,7 +62,7 @@ module Autoloaded::Warning
     #
     # @see .enabled?
     def enable(enabling)
-      previous_value = @disabled
+      previous_value = instance_variable_defined?(:@disabled) && @disabled
       @disabled = not!(enabling)
       if block_given?
         begin
