@@ -6,7 +6,9 @@ group :debug do
   gem   'pry-byebug',   '~> 3',                 platforms: [:mri_20,
                                                             :mri_21,
                                                             :mri_22,
-                                                            :mri_23]
+                                                            :mri_23,
+                                                            :mri_24,
+                                                            :mri_25]
   gem   'pry-debugger', '~> 0',                 platforms: :mri_19
 end
 
