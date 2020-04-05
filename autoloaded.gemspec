@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'codeclimate-test-reporter', '~>  0'
   if RUBY_VERSION < '2.2'
-    spec.add_development_dependency 'rake',                    '~> 12'
+    spec.add_development_dependency 'rake',                    '~> 13'
   else
     spec.add_development_dependency 'rake',                    '~> 13'
   end
