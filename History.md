@@ -40,9 +40,9 @@
 
 (First release)
 
-[JRuby]:                      http://jruby.org
-[Ruby-Core-Module-autoload]:  http://ruby-doc.org/core/Module.html#method-i-autoload-3F     "‘Module#autoload’ method in the Ruby Core Library"
-[Ruby-Core-Module-constants]: http://ruby-doc.org/core/Module.html#method-i-constants       "‘Module#constants’ method in the Ruby Core Library"
-[Ruby-Stdlib-Pathname]:       http://ruby-doc.org/stdlib/libdoc/pathname/rdoc/Pathname.html "‘Pathname’ class in the Ruby Standard Library"
-[readme]:                     http://github.com/njonsson/autoloaded/blob/master/README.md   "Autoloaded readme"
-[inline-documentation]:       http://www.rubydoc.info/github/njonsson/autoloaded            "Autoloaded inline documentation"
+[JRuby]:                      https://www.jruby.org/
+[Ruby-Core-Module-autoload]:  https://ruby-doc.org/core/Module.html#method-i-autoload-3F     "‘Module#autoload’ method in the Ruby Core Library"
+[Ruby-Core-Module-constants]: https://ruby-doc.org/core/Module.html#method-i-constants       "‘Module#constants’ method in the Ruby Core Library"
+[Ruby-Stdlib-Pathname]:       https://ruby-doc.org/stdlib/libdoc/pathname/rdoc/Pathname.html "‘Pathname’ class in the Ruby Standard Library"
+[readme]:                     https://github.com/njonsson/autoloaded/blob/master/README.md   "Autoloaded readme"
+[inline-documentation]:       https://www.rubydoc.info/github/njonsson/autoloaded            "Autoloaded inline documentation"

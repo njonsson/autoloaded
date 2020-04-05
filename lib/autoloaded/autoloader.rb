@@ -41,8 +41,8 @@ module Autoloaded
     # @return [Array of Array] the arguments passed to each +autoload+ statement
     #                          made
     #
-    # @see http://ruby-doc.org/core/Module.html#method-i-autoload Module#autoload
-    # @see http://ruby-doc.org/core/Kernel.html#method-i-autoload Kernel#autoload
+    # @see https://ruby-doc.org/core/Module.html#method-i-autoload Module#autoload
+    # @see https://ruby-doc.org/core/Kernel.html#method-i-autoload Kernel#autoload
     # @see #from
     # @see #except
     # @see #only

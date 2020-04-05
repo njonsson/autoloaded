@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
                        files. You can combine conventions, even putting multiple
                        autoloaded constants in a single source file.
                      end_description
-  spec.homepage    = 'http://njonsson.github.io/autoloaded'
+  spec.homepage    = 'https://njonsson.github.io/autoloaded'
   spec.license     = 'MIT'
 
   spec.required_ruby_version = '~> 2'
