@@ -6,7 +6,6 @@
 [![Code Climate quality report] ][Code-Climate-report]
 [![Code Climate coverage report]][Code-Climate-report]
 
-[![Gemnasium build status]      ][Gemnasium-build-status]
 [![Inch CI build status]        ][Inch-CI-build-status]
 [![RubyGems release]            ][RubyGems-release]
 
@@ -514,14 +513,12 @@ Released under the [MIT License][MIT-License].
 [Travis CI build status]:       https://secure.travis-ci.org/njonsson/autoloaded.svg?branch=master
 [Code Climate quality report]:  https://codeclimate.com/github/njonsson/autoloaded/badges/gpa.svg
 [Code Climate coverage report]: https://codeclimate.com/github/njonsson/autoloaded/badges/coverage.svg
-[Gemnasium build status]:       https://gemnasium.com/njonsson/autoloaded.svg
 [Inch CI build status]:         http://inch-ci.org/github/njonsson/autoloaded.svg?branch=master
 [RubyGems release]:             https://badge.fury.io/rb/autoloaded.svg
 
 [spider-gear-image]:           https://www.flickr.com/photos/dongkwan/4941065976              "spider gear image by Ernesto Andrade"
 [Travis-CI-build-status]:      http://travis-ci.org/njonsson/autoloaded                       "Travis CI build status for Autoloaded"
 [Code-Climate-report]:         http://codeclimate.com/github/njonsson/autoloaded              "Code Climate report for Autoloaded"
-[Gemnasium-build-status]:      http://gemnasium.com/njonsson/autoloaded                       "Gemnasium build status for Autoloaded"
 [Inch-CI-build-status]:        http://inch-ci.org/github/njonsson/autoloaded                  "Inch CI build status for Autoloaded"
 [RubyGems-release]:            http://rubygems.org/gems/autoloaded                            "RubyGems release of Autoloaded"
 [Ruby-Core-Module-autoload]:   http://ruby-doc.org/core/Module.html#method-i-autoload         "‘Module#autoload’ method in the Ruby Core Library"
