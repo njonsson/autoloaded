@@ -263,11 +263,19 @@ module Autoloaded
     end
 
     def host_source_filename
-      host_eval '::File.expand_path __FILE__'
+      if host_binding.respond_to?(:source_location)
+        host_eval "::File.expand_path '#{host_binding.source_location.first}'"
+      else
+        host_eval '::File.expand_path __FILE__'
+      end
     end
 
     def host_source_location
-      host_eval('[__FILE__, __LINE__]').collect(&:to_s).join ':'
+      if host_binding.respond_to?(:source_location)
+        host_binding.source_location
+      else
+        host_eval('[__FILE__, __LINE__]')
+      end.collect(&:to_s).join ':'
     end
 
   end
