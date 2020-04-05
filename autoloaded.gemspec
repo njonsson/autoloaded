@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 1.9', '< 3'
 
-  spec.add_development_dependency 'codeclimate-test-reporter', '~>  0'
+  spec.add_development_dependency 'codeclimate-test-reporter', '~> 1'
   spec.add_development_dependency 'rake',                      '~> 13'
   spec.add_development_dependency 'rspec',                     '~>  3.3'
 
