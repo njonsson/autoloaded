@@ -1,5 +1,10 @@
 # Version history for the _Autoloaded_ project
 
+## <a name="v1.6.0"></a>v1.6.0, Sun 4/05/2020
+
+* Eliminate Ruby warnings about
+  [_Binding#source_location_][Ruby-Core-Binding-source_location]
+
 ## <a name="v1.5.1"></a>v1.5.1, Wed 10/18/2017
 
 * Eliminate Ruby warnings about undefined instance variables
@@ -40,9 +45,10 @@
 
 (First release)
 
-[JRuby]:                      https://www.jruby.org/
-[Ruby-Core-Module-autoload]:  https://ruby-doc.org/core/Module.html#method-i-autoload-3F     "‘Module#autoload’ method in the Ruby Core Library"
-[Ruby-Core-Module-constants]: https://ruby-doc.org/core/Module.html#method-i-constants       "‘Module#constants’ method in the Ruby Core Library"
-[Ruby-Stdlib-Pathname]:       https://ruby-doc.org/stdlib/libdoc/pathname/rdoc/Pathname.html "‘Pathname’ class in the Ruby Standard Library"
-[readme]:                     https://github.com/njonsson/autoloaded/blob/master/README.md   "Autoloaded readme"
-[inline-documentation]:       https://www.rubydoc.info/github/njonsson/autoloaded            "Autoloaded inline documentation"
+[JRuby]:                             https://www.jruby.org/
+[Ruby-Core-Binding-source_location]: https://ruby-doc.org/core/Binding.html#method-i-source_location "‘Binding#source_location’ method in the Ruby Core Library"
+[Ruby-Core-Module-autoload]:         https://ruby-doc.org/core/Module.html#method-i-autoload-3F      "‘Module#autoload’ method in the Ruby Core Library"
+[Ruby-Core-Module-constants]:        https://ruby-doc.org/core/Module.html#method-i-constants        "‘Module#constants’ method in the Ruby Core Library"
+[Ruby-Stdlib-Pathname]:              https://ruby-doc.org/stdlib/libdoc/pathname/rdoc/Pathname.html  "‘Pathname’ class in the Ruby Standard Library"
+[readme]:                            https://github.com/njonsson/autoloaded/blob/master/README.md    "Autoloaded readme"
+[inline-documentation]:              https://www.rubydoc.info/github/njonsson/autoloaded             "Autoloaded inline documentation"
