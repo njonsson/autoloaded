@@ -61,7 +61,7 @@ public
   # @return [LoadPathedDirectory] the _LoadPathedDirectory_
   #
   # @see #path
-  # @see http://ruby-doc.org/core/Kernel.html#method-i-require Kernel#require
+  # @see https://ruby-doc.org/core/Kernel.html#method-i-require Kernel#require
   def each_source_filename
     if (ruby_load_path = closest_ruby_load_path)
       ::Dir.chdir ruby_load_path do

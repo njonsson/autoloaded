@@ -44,7 +44,7 @@ Or you may want to make _Autoloaded_ a dependency of your project by using
 ```ruby
 # Gemfile
 
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'autoloaded', '~> 2'
 ```
@@ -513,18 +513,18 @@ Released under the [MIT License][MIT-License].
 [Travis CI build status]:       https://secure.travis-ci.org/njonsson/autoloaded.svg?branch=master
 [Code Climate quality report]:  https://codeclimate.com/github/njonsson/autoloaded/badges/gpa.svg
 [Code Climate coverage report]: https://codeclimate.com/github/njonsson/autoloaded/badges/coverage.svg
-[Inch CI build status]:         http://inch-ci.org/github/njonsson/autoloaded.svg?branch=master
+[Inch CI build status]:         https://www.inch-ci.org/github/njonsson/autoloaded.svg?branch=master
 [RubyGems release]:             https://badge.fury.io/rb/autoloaded.svg
 
-[spider-gear-image]:           https://www.flickr.com/photos/dongkwan/4941065976              "spider gear image by Ernesto Andrade"
-[Travis-CI-build-status]:      http://travis-ci.org/njonsson/autoloaded                       "Travis CI build status for Autoloaded"
-[Code-Climate-report]:         http://codeclimate.com/github/njonsson/autoloaded              "Code Climate report for Autoloaded"
-[Inch-CI-build-status]:        http://inch-ci.org/github/njonsson/autoloaded                  "Inch CI build status for Autoloaded"
-[RubyGems-release]:            http://rubygems.org/gems/autoloaded                            "RubyGems release of Autoloaded"
-[Ruby-Core-Module-autoload]:   http://ruby-doc.org/core/Module.html#method-i-autoload         "‘Module#autoload’ method in the Ruby Core Library"
-[ActiveSupport-Autoload]:      http://api.rubyonrails.org/classes/ActiveSupport/Autoload.html "‘ActiveSupport::Autoload’ module in the Rails API"
-[Bundler]:                     http://bundler.io
-[Ruby-Core-Kernel-autoload]:   http://ruby-doc.org/core/Kernel.html#method-i-autoload         "‘Kernel#autoload’ method in the Ruby Core Library"
-[fork-Autoloaded]:             https://github.com/njonsson/autoloaded/fork                    "Fork the official repository of Autoloaded"
-[compare-Autoloaded-branches]: https://github.com/njonsson/autoloaded/compare                 "Compare branches of Autoloaded repositories"
-[MIT-License]:                 http://github.com/njonsson/autoloaded/blob/master/License.md   "MIT License claim for Autoloaded"
+[spider-gear-image]:           https://www.flickr.com/photos/dongkwan/4941065976               "spider gear image by Ernesto Andrade"
+[Travis-CI-build-status]:      https://www.travis-ci.org/njonsson/autoloaded                   "Travis CI build status for Autoloaded"
+[Code-Climate-report]:         https://codeclimate.com/github/njonsson/autoloaded              "Code Climate report for Autoloaded"
+[Inch-CI-build-status]:        https://www.inch-ci.org/github/njonsson/autoloaded              "Inch CI build status for Autoloaded"
+[RubyGems-release]:            https://rubygems.org/gems/autoloaded                            "RubyGems release of Autoloaded"
+[Ruby-Core-Module-autoload]:   https://ruby-doc.org/core/Module.html#method-i-autoload         "‘Module#autoload’ method in the Ruby Core Library"
+[ActiveSupport-Autoload]:      https://api.rubyonrails.org/classes/ActiveSupport/Autoload.html "‘ActiveSupport::Autoload’ module in the Rails API"
+[Bundler]:                     https://bundler.io/
+[Ruby-Core-Kernel-autoload]:   https://ruby-doc.org/core/Kernel.html#method-i-autoload         "‘Kernel#autoload’ method in the Ruby Core Library"
+[fork-Autoloaded]:             https://github.com/njonsson/autoloaded/fork                     "Fork the official repository of Autoloaded"
+[compare-Autoloaded-branches]: https://github.com/njonsson/autoloaded/compare                  "Compare branches of Autoloaded repositories"
+[MIT-License]:                 https://github.com/njonsson/autoloaded/blob/master/License.md   "MIT License claim for Autoloaded"
