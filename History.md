@@ -3,7 +3,8 @@
 ## <a name="v2.3.0"></a>v2.3.0 and <a name="v1.6.0"></a>v1.6.0, Sun 4/05/2020
 
 * Eliminate Ruby warnings about
-  [_Binding#source_location_][Ruby-Core-Binding-source_location]
+  [_Binding#source_location_][Ruby-Core-Binding-source_location] (thanks to
+  @guss77)
 
 ## <a name="v2.2.1"></a>v2.2.1 and <a name="v1.5.1"></a>v1.5.1, Wed 10/18/2017
 
