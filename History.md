@@ -4,7 +4,7 @@
 
 * Eliminate Ruby warnings about
   [_Binding#source_location_][Ruby-Core-Binding-source_location] (thanks to
-  @guss77)
+  [@guss77][GitHub-user-guss77])
 
 ## <a name="v1.5.1"></a>v1.5.1, Wed 10/18/2017
 
@@ -13,7 +13,8 @@
 ## <a name="v1.5.0"></a>v1.5.0, Wed 2/22/2017
 
 * Add support for Ruby load paths (`$:`) that contain one or more
-  [_Pathname_][Ruby-Stdlib-Pathname] objects
+  [_Pathname_][Ruby-Stdlib-Pathname] objects (thanks to
+  [@ekampp][GitHub-user-ekampp])
 
 ## <a name="v1.4.1"></a>v1.4.1, Sat 1/24/2015
 
@@ -46,6 +47,8 @@
 
 (First release)
 
+[GitHub-user-ekampp]:                https://github.com/ekampp                                       "GitHub user @ekampp"
+[GitHub-user-guss77]:                https://github.com/guss77                                       "GitHub user @guss77"
 [JRuby]:                             https://www.jruby.org/
 [Ruby-Core-Binding-source_location]: https://ruby-doc.org/core/Binding.html#method-i-source_location "‘Binding#source_location’ method in the Ruby Core Library"
 [Ruby-Core-Module-autoload]:         https://ruby-doc.org/core/Module.html#method-i-autoload-3F      "‘Module#autoload’ method in the Ruby Core Library"
