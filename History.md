@@ -1,9 +1,9 @@
-# Version history for the _Autoloaded_ project
+# Version history for the *Autoloaded* project
 
 ## <a name="v1.6.0"></a>v1.6.0, Sun 4/05/2020
 
 * Eliminate Ruby warnings about
-  [_Binding#source_location_][Ruby-Core-Binding-source_location] (thanks to
+  [*Binding#source_location*][Ruby-Core-Binding-source_location] (thanks to
   [@guss77][GitHub-user-guss77])
 
 ## <a name="v1.5.1"></a>v1.5.1, Wed 10/18/2017
@@ -13,12 +13,12 @@
 ## <a name="v1.5.0"></a>v1.5.0, Wed 2/22/2017
 
 * Add support for Ruby load paths (`$:`) that contain one or more
-  [_Pathname_][Ruby-Stdlib-Pathname] objects (thanks to
+  [*Pathname*][Ruby-Stdlib-Pathname] objects (thanks to
   [@ekampp][GitHub-user-ekampp])
 
 ## <a name="v1.4.1"></a>v1.4.1, Sat 1/24/2015
 
-* Don’t warn about a _VERSION_ constant presumably loaded by a _.gemspec_
+* Don’t warn about a *VERSION* constant presumably loaded by a *.gemspec*
 
 ## <a name="v1.3.0"></a>v1.3.0, Fri 12/26/2014
 
@@ -32,11 +32,11 @@
 
 * Correct/improve autoload behavior
   * Instead of returning the source **directory** path from
-    [_Module#autoload?_][Ruby-Core-Module-autoload], return one or more matching
+    [*Module#autoload?*][Ruby-Core-Module-autoload], return one or more matching
     source **file** path(s)
   * Use Ruby load path (`$:`) to handle relative source file paths
-  * Explain _Module#autoload?_ and
-    [_Module#constants_][Ruby-Core-Module-constants] in the [readme][readme] and
+  * Explain *Module#autoload?* and
+    [*Module#constants*][Ruby-Core-Module-constants] in the [readme][readme] and
     in [inline documentation][inline-documentation]
 
 ## <a name="v1.0.0"></a>v1.0.0, Wed 10/29/2014

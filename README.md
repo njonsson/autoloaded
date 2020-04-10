@@ -9,14 +9,14 @@
 [![Inch CI build status]        ][Inch-CI-build-status]
 [![RubyGems release]            ][RubyGems-release]
 
-If you like the [_Module#autoload_][Ruby-Core-Module-autoload] feature of the
-Ruby Core library, you may have wished for _Autoloaded_. It eliminates the
+If you like the [*Module#autoload*][Ruby-Core-Module-autoload] feature of the
+Ruby Core library, you may have wished for *Autoloaded*. It eliminates the
 drudgery of handcrafting an `autoload` statement for each Ruby source code file
 in your project. It also avoids the limitations of rigid convention-driven
 facilities such as those provided by the [ActiveSupport][ActiveSupport-Autoload]
 RubyGem.
 
-_Autoloaded_ assumes, but does not enforce, `CamelCase`-to-`snake_case`
+*Autoloaded* assumes, but does not enforce, `CamelCase`-to-`snake_case`
 correspondence between the names of constants and source files. You can combine
 conventions, even putting multiple autoloaded constants in a single source file.
 
@@ -26,7 +26,7 @@ Install [the RubyGem][RubyGems-release].
 
     $ gem install autoloaded
 
-Use _Autoloaded_ in your RubyGem project by making it a runtime dependency.
+Use *Autoloaded* in your RubyGem project by making it a runtime dependency.
 
 ```ruby
 # my_awesome_gem.gemspec
@@ -38,7 +38,7 @@ Gem::Specification.new do |spec|
 end
 ```
 
-Or you may want to make _Autoloaded_ a dependency of your project by using
+Or you may want to make *Autoloaded* a dependency of your project by using
 [Bundler][Bundler].
 
 ```ruby
@@ -65,15 +65,15 @@ Suppose you have the following source files.
     │  └─ version.rb
     └─ my_awesome_gem.rb
 
-### The _Autoloaded.module_ or _Autoloaded.class_ method
+### The *Autoloaded.module* or *Autoloaded.class* method
 
-The _Autoloaded.module_ and _Autoloaded.class_ method calls below invoke
-[_Module#autoload_][Ruby-Core-Module-autoload] for each source file in the
+The *Autoloaded.module* and *Autoloaded.class* method calls below invoke
+[*Module#autoload*][Ruby-Core-Module-autoload] for each source file in the
 calling module’s corresponding directory. Note that these methods must receive a
 block, even if it’s an empty block.
 
 The file paths used are abbreviated, if possible, using a directory of the Ruby
-load path (`$:`). They are also rendered without their _.rb_ extension.
+load path (`$:`). They are also rendered without their *.rb* extension.
 
 ```ruby
 # lib/my_awesome_gem.rb
@@ -151,7 +151,7 @@ MyAwesomeGem::DB::Mysql  # Raises NameError because
 
 ### The `with` specification
 
-_Autoloaded_ needs hints from you concerning unpredictable spellings,
+*Autoloaded* needs hints from you concerning unpredictable spellings,
 stylization, and organization of constant names and/or source file names. You can
 specify `with` as:
 
@@ -339,9 +339,9 @@ cumulative.
 
 ### The `from` specification
 
-It’s recommended that you call _Autoloaded.module_ or _Autoloaded.class_ from
+It’s recommended that you call *Autoloaded.module* or *Autoloaded.class* from
 within the source file where your module or class is defined. This practice
-allows _Autoloaded_ to assume that the source files to be autoloaded are in a
+allows *Autoloaded* to assume that the source files to be autoloaded are in a
 directory of the same name (and in the same location) as the module’s defining
 source file.
 
@@ -370,18 +370,18 @@ end
 A path provided to `from` cannot be relative; it must start with the filesystem
 root.
 
-If you specify `from` multiple times in an _Autoloaded_ block, only the last one
+If you specify `from` multiple times in an *Autoloaded* block, only the last one
 takes effect.
 
-### The _Autoloaded.warn_ method
+### The *Autoloaded.warn* method
 
-There are two circumstances under which _Autoloaded_ by default will write
+There are two circumstances under which *Autoloaded* by default will write
 warnings to stderr:
 
 * Overriding an established autoload
 * Establishing an autoload for a defined constant
 
-You can silence these warnings by passing `false` to _Autoloaded.warn_.  (Passing
+You can silence these warnings by passing `false` to *Autoloaded.warn*.  (Passing
 `true` turns warnings on if they are off.)
 
 ```ruby
@@ -437,7 +437,7 @@ end
 
 ### How to debug autoloading
 
-The _Autoloaded.module_ or _Autoloaded.class_ method returns an ordered list of
+The *Autoloaded.module* or *Autoloaded.class* method returns an ordered list of
 arguments it has passed to `autoload`.
 
 ```ruby
@@ -464,20 +464,20 @@ end
 #  [:PostgreSQL, 'my_awesome_gem/db/postgre_sql']]
 ```
 
-You can also hook [_Module#autoload_][Ruby-Core-Module-autoload] and
-[_Kernel#autoload_][Ruby-Core-Kernel-autoload] via monkeypatching or other means
+You can also hook [*Module#autoload*][Ruby-Core-Module-autoload] and
+[*Kernel#autoload*][Ruby-Core-Kernel-autoload] via monkeypatching or other means
 in order to see what’s happening.
 
 ### Source filenames are relative to the `from` specification
 
 You may have noticed that source filenames in the above examples are not
-absolute. They are relative to the _Autoloaded_ block’s `from` specification
+absolute. They are relative to the *Autoloaded* block’s `from` specification
 (which I recommend that you allow to be computed for you —
 [see above](#the-from-specification)).
 
 ### Recursive autoloading not supported
 
-_Autoloaded_ does not perform deep autoloading of nested namespaces and
+*Autoloaded* does not perform deep autoloading of nested namespaces and
 directories. This is by design.
 
 ## Contributing
@@ -496,9 +496,9 @@ run the tests. You can also `bin/console` to get an interactive prompt that will
 allow you to experiment.
 
 To install this gem onto your local machine, `bundle exec rake install`. To
-release a new version, update the version number in _lib/autoloaded/version.rb_,
+release a new version, update the version number in *lib/autoloaded/version.rb*,
 and then `bundle exec rake release`, which will create a Git tag for the version,
-push Git commits and tags, and push the _.gem_ file to
+push Git commits and tags, and push the *.gem* file to
 [RubyGems.org](RubyGems-release).
 
 ## License
