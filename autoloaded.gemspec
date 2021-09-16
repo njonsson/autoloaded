@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.homepage    = 'https://njonsson.github.io/autoloaded'
   spec.license     = 'MIT'
 
-  spec.required_ruby_version = '>= 1.9', '< 3'
+  spec.required_ruby_version = '>= 1.9', '< 4'
 
   spec.add_development_dependency 'codeclimate-test-reporter', '~>  0'
   if RUBY_VERSION < '2.2'
