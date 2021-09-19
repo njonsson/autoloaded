@@ -1,5 +1,9 @@
 # Version history for the *Autoloaded* project
 
+## <a name="v1.7.0"></a>v1.7.0, Sat 9/19/2021
+
+* Add support for Ruby v3 (thanks to [@krimsonkla][GitHub-user-krimsonkla])
+
 ## <a name="v1.6.0"></a>v1.6.0, Sun 4/05/2020
 
 * Eliminate Ruby warnings about
@@ -47,6 +51,7 @@
 
 (First release)
 
+[GitHub-user-krimsonkla]:            https://github.com/krimsonkla                                   "GitHub user @krimsonkla"
 [GitHub-user-ekampp]:                https://github.com/ekampp                                       "GitHub user @ekampp"
 [GitHub-user-guss77]:                https://github.com/guss77                                       "GitHub user @guss77"
 [JRuby]:                             https://www.jruby.org/
