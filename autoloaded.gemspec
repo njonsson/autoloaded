@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
   else
     spec.add_development_dependency 'rake',                    '~> 13'
   end
-  spec.add_development_dependency 'rspec',                     '~>  3.3'
+  spec.add_development_dependency 'rspec',                     '~>  3'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
                          f.match(%r{^(test|spec|features)/})
