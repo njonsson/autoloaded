@@ -1,6 +1,7 @@
 /.bundle/
 /.rbx
 /.ruby-*
+/.tool-versions
 /.yardoc/
 /Gemfile.lock
 /_yardoc/
