@@ -19,7 +19,6 @@ script: "bundle exec rake test"
 matrix:
   allow_failures:
     - rvm: 1.9
-    - rvm: 3.1
     - rvm: ruby-head
     - rvm: jruby-head
     - rvm: rbx
