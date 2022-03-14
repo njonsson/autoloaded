@@ -510,14 +510,14 @@ push Git commits and tags, and push the *.gem* file to
 Released under the [MIT License][MIT-License].
 
 [Autoloaded graphic]:           https://farm5.staticflickr.com/4134/4941065976_54737fe145.jpg
-[Travis CI build status]:       https://secure.travis-ci.org/njonsson/autoloaded.svg?branch=master
+[Travis CI build status]:       https://app.travis-ci.com/njonsson/autoloaded.svg?branch=main
 [Code Climate quality report]:  https://codeclimate.com/github/njonsson/autoloaded/badges/gpa.svg
 [Code Climate coverage report]: https://codeclimate.com/github/njonsson/autoloaded/badges/coverage.svg
 [Inch CI build status]:         https://www.inch-ci.org/github/njonsson/autoloaded.svg?branch=master
 [RubyGems release]:             https://badge.fury.io/rb/autoloaded.svg
 
 [spider-gear-image]:           https://www.flickr.com/photos/dongkwan/4941065976               "spider gear image by Ernesto Andrade"
-[Travis-CI-build-status]:      https://www.travis-ci.org/njonsson/autoloaded                   "Travis CI build status for Autoloaded"
+[Travis-CI-build-status]:      https://app.travis-ci.com/github/njonsson/autoloaded            "Travis CI build status for Autoloaded"
 [Code-Climate-report]:         https://codeclimate.com/github/njonsson/autoloaded              "Code Climate report for Autoloaded"
 [Inch-CI-build-status]:        https://www.inch-ci.org/github/njonsson/autoloaded              "Inch CI build status for Autoloaded"
 [RubyGems-release]:            https://rubygems.org/gems/autoloaded                            "RubyGems release of Autoloaded"
