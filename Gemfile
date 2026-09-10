@@ -8,7 +8,7 @@ group :debug do
 end
 
 group :development do
-  gem   'json',         '~> 2',             require: false
+  gem   'json',         '~> 3',             require: false
 end
 
 group :doc do
